@@ -11,9 +11,9 @@ For our CSIT327 course project, we are developing FoodGuard, a food waste managa
 ## Members
 | Full Name | GitHub Profile |
 | --------- | -------------- |
-| **Matunog**, Margaret Anne C. | [---](https://github.com/) |
+| **Matunog**, Margaret Anne C. | [marginggg](https://github.com/margamatunog) |
 | **Porter**, Nicolo Ryne A. | [nicoryne](https://github.com/nicoryne) |
-| **San Diego**, Gabe Jeremy R. | [---](https://github.com/) |
+| **San Diego**, Gabe Jeremy R. | [gabejeremy](https://github.com/gabejeremy) |
 
 ## Features
 - **User Authentication and Management**
