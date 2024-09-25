@@ -1,6 +1,6 @@
 # FoodGuard
 A food waste management web-application
----
+
 ## Repository Contents
 - Project Gantt Chart
 - Functional Business Requirements
