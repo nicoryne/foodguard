@@ -2,10 +2,10 @@
 For our CSIT327 course project, we are developing FoodGuard, a food waste managament web application with the goal of decreasing food waste. With this web-app, users will be able to track freshness, manage ingredients more effectively, and get timely reminders before products expire. Users are able to incorporate shopping lists to reduce pointless purchases, catalog ingredients, and get recipe suggestions based on what they already have thanks to an easy-to-use interface.
 
 ## Repository Contents Overview
-- Project Gantt Chart
-- Functional Business Requirements
-- Entity-Relationship Diagram
-- UI/UX Mockup
+- [Project Gantt Chart](https://docs.google.com/spreadsheets/d/11ZjoV7b2xWtxWbKaq-AH3ico476qVQgTe4zKd_bFd-s/edit?usp=sharing)
+- [Functional Business Requirements](https://docs.google.com/document/d/132jh_pLRHspBdgdF2ZyGM-lMcHAog-wezD5wm5X-SbY/edit?usp=sharing)
+- [Entity-Relationship Diagram](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=erd-foodguard.drawio#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fnicoryne%2Ffoodguard%2Fmain%2Ferd%2Ferd-foodguard.drawio)
+- [UI/UX Mockup](https://www.figma.com/design/bxrI5SJgmKN9Yha5c0d4pz/FoodGuard?node-id=135-267&t=GAeqxJPBXLRVYOlj-1)
 - Project Source Code
   
 ## Members
