@@ -20,7 +20,7 @@ from .views import (
     UserListView, UserDetailView, UserCreateView, 
     InventoryListView, InventoryDetailView, InventoryIngredientCreateView,
     RecipeListView, RecipeDetailView, RecipeCreateView, save_recipe, 
-    ShoppingListView, ShoppingListIngredientCreateView, missing_ingredients
+    ShoppingListView, ShoppingListIngredientCreateView
 )
 
 urlpatterns = [
@@ -41,7 +41,5 @@ urlpatterns = [
 
     path('shopping-lists/', ShoppingListView.as_view(), name='shopping_list'),
     path('shopping-lists/create/', ShoppingListIngredientCreateView.as_view(), name='shopping_list_add'),
-
-    path('inventory/<int:inventory_id>/missing/', missing_ingredients, name='missing_ingredients'),
 ]
 

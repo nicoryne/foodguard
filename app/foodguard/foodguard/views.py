@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import User, Inventory, Ingredient, InventoryIngredientOwnership, Recipe, RecipeIngredient, RecipeUserSaved, ShoppingList, MissingIngredient
+from .models import User, Inventory, Ingredient, InventoryIngredientOwnership, Recipe, RecipeIngredient, RecipeUserSaved, ShoppingList
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 # User List View
@@ -79,9 +79,3 @@ class ShoppingListIngredientCreateView(CreateView):
     fields = ['user', 'capacity']
     template_name = 'shopping_list_form.html'
     success_url = '/shopping-lists/'
-
-# Handle Missing Ingredients
-def missing_ingredients(request, inventory_id):
-    inventory = get_object_or_404(Inventory, id=inventory_id)
-    missing = MissingIngredient.objects.filter(inventory=inventory)
-    return render(request, 'missing_ingredients.html', {'missing': missing})
