@@ -37,7 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'foodguard'
+    
+    'foodguard',
+    'apps.ingredient.apps.IngredientConfig',
+    'apps.inventory.apps.InventoryConfig',
+    'apps.notifications.apps.NotificationsConfig',
+    'apps.recipes.apps.RecipesConfig',
+    'apps.shoppinglist.apps.ShoppingListConfig',
+    'apps.users.apps.UsersConfig',
 ]
 
 
