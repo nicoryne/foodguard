@@ -6,5 +6,3 @@ class IngredientConfig(AppConfig):
     
     def ready(self):
         from apps.ingredient import signals
-
-

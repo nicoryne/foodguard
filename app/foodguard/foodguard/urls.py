@@ -11,7 +11,7 @@ urlpatterns = [
     
     # Ingredient Path
     path('ingredient/', include('apps.ingredient.urls')),
-    
+
     # Inventory Path
     path('inventory/', include('apps.inventory.urls')),
     

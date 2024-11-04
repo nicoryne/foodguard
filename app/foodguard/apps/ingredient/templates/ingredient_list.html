@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    /* Container and general styling */
+    .container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 26px;
+        color: #333;
+    }
+
+    p {
+        text-align: center;
+        color: #666;
+    }
+
+    /* Inventory Grid */
+    .inventory-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjusted size */
+        gap: 15px;
+    }
+
+    /* Inventory item styling */
+    .inventory-item {
+        padding: 20px;
+        background-color: #d0e4ff;
+        border-radius: 8px;
+        text-align: center;
+        position: relative;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.2s, transform 0.2s;
+        min-height: 120px;
+        overflow: hidden;
+    }
+
+    /* Overlay for dimming effect */
+    .inventory-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    /* Show overlay and center buttons on hover */
+    .inventory-item:hover::before {
+        opacity: 1;
+    }
+    .inventory-item:hover .actions {
+        display: flex;
+    }
+
+    /* Center Update and Delete buttons */
+    .actions {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        flex-direction: column;
+        gap: 8px;
+    }
+    .actions a {
+        padding: 8px 12px;
+        background-color: #ffcc80;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* Quantity and Expiry Info */
+    .inventory-item p {
+        font-size: 14px;
+        color: #202020;
+        margin: 5px 0;
+        opacity: 1;
+        transition: opacity 0.2s;
+    }
+
+    /* Hide text on hover */
+    .inventory-item:hover p {
+        opacity: 0;
+        color: #202020;
+    }
+
+    /* Add Item Button Styling */
+    .add-item {
+        background-color: #ccc;
+        color: #555;
+        cursor: pointer;
+        border-radius: 8px;
+        text-align: center;
+        position: relative;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.2s, transform 0.2s;
+        min-height: 120px;
+        overflow: hidden;
+        transition: background-color 0.3s ease;
+    }
+
+    .add-item:hover {
+        background-color: #bbb;
+    }
+
+    .add-item a {
+        color: inherit;
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+        padding: 20px 0;
+    }
+    .title {
+        padding: 20px;
+    }
+    /* Filter Button */
+    .btn-filter {
+        background-color: #ffcc80;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+    
+</style>
+
+<div class="container">
+    <h2>Welcome, Gabe!</h2>
+    <p>What are we eating today?</p>
+    
+    <!-- Filter Button -->
+    <button class="btn-filter" onclick="filterCategory()">Filter ▼</button>
+    
+    <div class="inventory-grid">
+        {% for ingredient in ingredients %}
+        <div class="inventory-item">
+            <p><b>Name:</b> {{ ingredient.name }}</p>
+            <p><b>Quantity:</b> {{ ingredient.quantity }}</p>
+            <p><b>Category:</b> {{ ingredient.category }}</p>
+            <p><b>Expires In:</b> {{ ingredient.days_until_expiry }} Days</p>
+            <div class="actions">
+                <a href="{% url 'ingredient-update' ingredient.pk %}">Update</a>
+                <a href="{% url 'ingredient-delete' ingredient.pk %}">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <!-- Add New Item Button as a Square -->
+        <div class="add-item">
+            <a href="/ingredient/new/">Add New Item</a>
+        </div>
+    </div>
+
+    <div class ="title"><h3>Urgent Consumption</h3></div>
+    <div class="inventory-grid">
+        {% for ingredient in urgent_ingredients %}
+        <div class="urgent-item">
+            <p>Quantity: {{ ingredient.quantity }}</p>
+            <p>Expires In: {{ ingredient.days_until_expiry }} Days</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function filterCategory() {
+        alert("Filter by category feature will be added here.");
+    }
+</script>
+
+{% endblock %}

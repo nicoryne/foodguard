@@ -14,22 +14,29 @@ class IngredientDetailView(DetailView):
     template_name = 'ingredient_detail.html'
     context_object_name = 'ingredient'
 
-# Ingredient Create View
+# # Ingredient Create View
+# class IngredientCreateView(CreateView):
+#     model = Ingredient
+#     fields = ['name', 'category', 'image']
+#     template_name = 'ingredient_create_form.html'
+#     success_url = '/ingredients/'
+
 class IngredientCreateView(CreateView):
     model = Ingredient
-    fields = ['name', 'category', 'image']
+    fields = ['name', 'quantity', 'category', 'image', 'date_purchased', 'expiry_date'] 
     template_name = 'ingredient_create_form.html'
-    success_url = '/ingredients/'
+    success_url = reverse_lazy('ingredient-list')
 
 # Ingredient Update View
+# views.py
 class IngredientUpdateView(UpdateView):
     model = Ingredient
-    fields = ['name', 'category', 'image']
+    fields = ['name', 'quantity', 'category', 'image', 'date_purchased', 'expiry_date']
     template_name = 'ingredient_update_form.html'
-    success_url = '/ingredients/'
+    success_url = reverse_lazy('ingredient-list')
 
-# Ingredient Delete View
 class IngredientDeleteView(DeleteView):
     model = Ingredient
     template_name = 'ingredient_confirm_delete.html'
-    success_url = '/ingredients/'
+    success_url = reverse_lazy('ingredient-list')
+
