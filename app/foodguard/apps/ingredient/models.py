@@ -11,4 +11,4 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return f"Ingredient ID: {self.ingredient_id}\nName: {self.name}\nCategory: {self.category}"
-    #ADD MORE IF YOU NEED TO VIEW MORE IN THE SHELL CONSOLE.
+    # ADD MORE IF YOU NEED TO VIEW MORE IN THE SHELL CONSOLE.

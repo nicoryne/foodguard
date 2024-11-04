@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Update Ingredient</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Ingredient Name -->
+        <div class="form-group">
+            <label for="id_name">Ingredient Name</label>
+            {{ form.name }}
+        </div>
+        
+        <!-- Quantity -->
+        <div class="form-group">
+            <label for="id_quantity">Quantity</label>
+            {{ form.quantity }}
+        </div>
+        
+        <!-- Category -->
+        <div class="form-group">
+            <label for="id_category">Category</label>
+            {{ form.category }}
+        </div>
+        
+        <!-- Upload Ingredient Image -->
+        <div class="form-group">
+            <label for="id_image">Upload Ingredient Image</label>
+            {{ form.image }}
+        </div>
+        
+        <!-- Date Purchased -->
+        <div class="form-group">
+            <label for="id_date_purchased">Date Purchased</label>
+            {{ form.date_purchased }}
+        </div>
+        
+        <!-- Expiry Date -->
+        <div class="form-group">
+            <label for="id_expiry_date">Expiry Date</label>
+            {{ form.expiry_date }}
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+
+<style>
+    .container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #f8f9fa;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        color: #555;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+{% endblock %}
