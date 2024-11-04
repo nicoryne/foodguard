@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+/* General Container Styling */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+}
+
+/* Inventory Header */
+.inventory-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.inventory-header h3 {
+    font-size: 22px;
+    color: #333;
+}
+
+.btn-filter {
+    background-color: #ffcc80;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Inventory Grid */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+/* Inventory Item Styling */
+.inventory-item, .add-item {
+    padding: 20px;
+    background-color: #e0f7fa;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inventory-item {
+    background-color: #d0e4ff; /* Light blue background */
+}
+
+.urgent-item {
+    background-color: #ffcdd2; /* Light red background for urgent items */
+}
+
+/* Quantity and Expiry Info */
+.inventory-item p, .urgent-item p {
+    font-size: 14px;
+    color: #333;
+    margin: 5px 0;
+}
+
+/* Add Item Button */
+.add-item {
+    background-color: #ccc;
+    color: #555;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-item:hover {
+    background-color: #bbb;
+}
+
+.add-item a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    margin-top: 20px;
+}
+</style>
+
+<div class="container">
+    <h2>Welcome, Gabe!</h2>
+    <p>What are we eating today?</p>
+    
+    <div class="inventory-header">
+        <h3>Inventory</h3>
+        <button class="btn-filter">Filter By <span>▼</span></button>
+    </div>
+
+    <div class="inventory-grid">
+        {% for ingredient in ingredients %}
+        <div class="inventory-item">
+            <p>Name: {{ ingredient.name }}</p>
+            <p>Quantity: {{ ingredient.quantity }}</p>
+            <p>Category: {{ ingredient.category }}</p>
+            <p>Expires In: {{ ingredient.days_until_expiry }} Days</p>
+        </div>
+        {% endfor %}
+        <div class="add-item">
+            <a href="/ingredient/new/">Add New Item</a>
+        </div>
+    </div>
+
+    <h3>Urgent Consumption</h3>
+    <div class="inventory-grid">
+        {% for ingredient in urgent_ingredients %}
+        <div class="urgent-item">
+            <p>Quantity: {{ ingredient.quantity }}</p>
+            <p>Expires In: {{ ingredient.days_until_expiry }} Days</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
