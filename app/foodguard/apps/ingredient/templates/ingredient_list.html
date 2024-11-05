@@ -126,7 +126,7 @@
         padding: 20px;
     }
     /* Filter Button */
-    .btn-filter {
+    .filter-select {
         background-color: #ffcc80;
         padding: 8px 16px;
         border: none;
@@ -136,6 +136,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 10px;
         margin-bottom: 15px;
     }
     
@@ -145,12 +146,20 @@
     <h2>Welcome, Gabe!</h2>
     <p>What are we eating today?</p>
     
-    <!-- Filter Button -->
-    <button class="btn-filter" onclick="filterCategory()">Filter ▼</button>
+    <!-- Filter dropdown -->
+    <div class="filter-container">
+        <select id="categoryFilter" class="filter-select" onchange="filterCategory()">
+            <option value="all">All Categories</option>
+            <option value="Meat">Meat</option>
+            <option value="Vegetable">Vegetable</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Fruit">Fruit</option>
+        </select>
+    </div>
     
     <div class="inventory-grid">
         {% for ingredient in ingredients %}
-        <div class="inventory-item">
+        <div class="inventory-item" data-category="{{ ingredient.category }}">
             <p><b>Name:</b> {{ ingredient.name }}</p>
             <p><b>Quantity:</b> {{ ingredient.quantity }}</p>
             <p><b>Category:</b> {{ ingredient.category }}</p>
@@ -181,7 +190,17 @@
 
 <script>
     function filterCategory() {
-        alert("Filter by category feature will be added here.");
+        const selectedCategory = document.getElementById("categoryFilter").value;
+        const items = document.querySelectorAll(".inventory-item");
+
+        items.forEach(item => {
+            const itemCategory = item.getAttribute("data-category");
+            if (selectedCategory === "all" || itemCategory === selectedCategory) {
+                item.style.display = "block";
+            } else {
+                item.style.display = "none";
+            }
+        });
     }
 </script>
 
