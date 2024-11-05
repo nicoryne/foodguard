@@ -1,6 +1,7 @@
 from django.contrib.auth.hashers import make_password
 from .models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 # User List View
 class UserListView(ListView):
@@ -19,7 +20,7 @@ class UserCreateView(CreateView):
     model = User
     fields = ['fname', 'lname', 'password', 'email', 'phone_number', 'date_of_birth']
     template_name = 'user_create_form.html'
-    success_url = '/users/'
+    success_url = reverse_lazy('user-list')
 
     def form_valid(self, form):
         # Hash the password before saving
