@@ -29,16 +29,19 @@
           />
 
           <ul class="raleway-600">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">My Ingredients</a></li>
-            <li><a href="#">Recipe Book</a></li>
-            <li><a href="#">Shopping List</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/ingredient">My Ingredients</a></li>
+            <li><a href="/recipe_list">Recipe Book</a></li>
+            <li><a href="/shopping-list">Shopping List</a></li>
           </ul>
         </div>
 
         <button class="button raleway-400">Login</button>
       </nav>
     </header>
-    {% endblock navbar%} {% block content %} {% endblock content %}
+    {% endblock navbar%}
+    <div class="content-wrapper">
+      {% block content %} {% endblock content %}
+    </div>
   </body>
 </html>

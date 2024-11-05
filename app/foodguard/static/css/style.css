@@ -28,6 +28,34 @@ html,
 body {
   width: 100%;
   height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-image: url("/static/img/doodle-bg.png");
+  background-size: cover; /* Ensures the background covers the whole page */
+  background-position: center;
+  background-attachment: fixed; /* Keeps background fixed during scroll */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Wrapper for main content */
+.content-wrapper {
+  padding: 2rem; /* Add padding for breathing room */
+  max-width: 1200px;
+  margin: 0 auto; /* Center content */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Optional: slight white overlay for readability */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
 /************************/

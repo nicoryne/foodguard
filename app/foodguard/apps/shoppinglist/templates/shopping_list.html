@@ -1,11 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FoodGuard - Shopping List</title>
-  </head>
-  <body>
-    <h1>Shopping List</h1>
-  </body>
-</html>
+{% extends 'base.html' %} {% block content %}
+
+<main>
+  <section>
+    <div>
+      <h1>My List</h1>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Ingredient</th>
+          <th>Quantity</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ingredient in ingredients_to_buy %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ ingredient.ingredient.name }}</td>
+          <td>{{ ingredient.quantity }}</td>
+          <td>
+            {% if ingredient.in_cart %}
+            <button disabled>In Cart</button>
+            {% else %}
+            <form
+              method="post"
+              action="{% url 'ingredient-in-cart-delete' ingredient.id %}"
+            >
+              {% csrf_token %}
+              <button type="submit">Remove</button>
+            </form>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  <aside></aside>
+</main>
+
+{% endblock content %}
