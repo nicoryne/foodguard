@@ -1,0 +1,219 @@
+.__shoppinglist {
+  width: 100%;
+  height: 90vh;
+}
+
+.__shoppinglist .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.__shoppinglist .section {
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  height: 80%;
+}
+
+.__shoppinglist .list-section .header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.__shoppinglist .list-section {
+  background-color: white;
+  width: 60%;
+}
+
+.__shoppinglist .summary-section {
+  background-color: var(--primary-coral);
+  width: 40%;
+}
+
+.__shoppinglist header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.__shoppinglist h2 {
+  font-size: 2rem;
+}
+
+.__shoppinglist .list-section h2 {
+  color: var(--primary-coral);
+}
+
+.__shoppinglist .summary-section h2 {
+  color: white;
+}
+
+.__shoppinglist .header-logo {
+  width: 60px;
+  height: auto;
+}
+
+.__shoppinglist .cta-button {
+  background: transparent;
+  border: none;
+  margin-inline: 8px;
+  cursor: grab;
+  transition: all 0.4s ease;
+}
+
+.__shoppinglist .header-action-btn,
+.__shoppinglist .row-action-btn {
+  height: auto;
+}
+
+.__shoppinglist .header-action-btn {
+  width: 32px;
+}
+
+.__shoppinglist .row-action-btn {
+  width: 16px;
+}
+
+.__shoppinglist .header-action-btn:hover {
+  scale: 1.1;
+}
+
+.__shoppinglist .del-btn svg {
+  stroke: var(--primary-lemon);
+}
+
+.__shoppinglist .add-btn svg {
+  stroke: var(--primary-sage);
+}
+
+.__shoppinglist .list-section header svg,
+.__shoppinglist .summary-section header svg {
+  stroke: var(--primary-coral);
+}
+
+.__shoppinglist .summary-section header svg {
+  stroke: white;
+}
+
+/* List Section Table */
+
+.__shoppinglist .list-section table {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.__shoppinglist .list-section thead {
+  background-color: var(--primary-coral);
+}
+
+.__shoppinglist .list-section thead th {
+  background-color: var(--primary-coral);
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+
+.__shoppinglist .list-section tbody td {
+  font-weight: 600;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.__shoppinglist .not-in-cart td,
+.__shoppinglist .not-in-cart td svg {
+  color: var(--primary-coral);
+  stroke: var(--primary-coral);
+}
+
+.__shoppinglist .in-cart td,
+.__shoppinglist .in-cart td svg {
+  color: var(--primary-sage);
+  stroke: var(--primary-sage);
+}
+
+.__shoppinglist .summary-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1.3fr 1fr;
+
+  gap: 20px;
+}
+
+.__shoppinglist .summary-box * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  padding: 2rem;
+  font-weight: 600;
+  border-radius: 16px;
+  width: 100%;
+}
+
+.__shoppinglist .summary-box h3 {
+  font-size: 2.4rem;
+}
+
+.__shoppinglist .items-left {
+  grid: 1 / 1 / 2 / 2;
+  background-color: white;
+}
+
+.__shoppinglist .items-left,
+.__shoppinglist .items-left h3 {
+  color: var(--primary-peach);
+}
+
+.__shoppinglist .items-in-cart {
+  grid: 1 / 2 / 2 / 3;
+  background-color: white;
+}
+
+.__shoppinglist .items-in-cart,
+.__shoppinglist .items-in-cart h3 {
+  color: var(--primary-sage);
+}
+
+.__shoppinglist .items-total {
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+
+  background-color: #cf6666;
+}
+
+.__shoppinglist .items-total,
+.__shoppinglist .items-total h3 {
+  color: white;
+}
+
+.__shoppinglist .btn-shop {
+  background-color: white;
+  margin-top: 2rem;
+  color: var(--primary-coral);
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  cursor: grab;
+  padding: 2rem;
+  width: 100%;
+
+  transition: all 0.4s ease;
+}
+
+.__shoppinglist .btn-shop:hover {
+  background-color: var(--primary-coral);
+  color: white;
+}
