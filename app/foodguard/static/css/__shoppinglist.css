@@ -1,0 +1,41 @@
+.__shoppinglist .container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.__shoppinglist .list-section,
+.summary-section {
+  flex: 1;
+  margin: 10px;
+}
+
+.__shoppinglist table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.__shoppinglist table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.__shoppinglist .summary-box {
+  background-color: var(--primary-coral);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+.__shoppinglist button {
+  background-color: var(--primary-coral);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.__shoppinglist button:hover {
+  background-color: var(--primary-hover);
+}

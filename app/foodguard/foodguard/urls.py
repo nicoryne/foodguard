@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     
     # Index Path
-    path('', TemplateView.as_view(template_name='index.html'), name='landing_page'),
+    path('', TemplateView.as_view(template_name='landing.html'), name='landing_page'),
     
     # Admin Path
     path('admin/', admin.site.urls),

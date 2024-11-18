@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ShoppingList, IngredientToBuy, IngredientInCart
+from .models import ShoppingList, IngredientToBuy
 
 @admin.register(ShoppingList)
 class ShoppingListAdmin(admin.ModelAdmin):
@@ -10,7 +10,3 @@ class ShoppingListAdmin(admin.ModelAdmin):
 class IngredientToBuyAdmin(admin.ModelAdmin):
     list_display = ('ingredient', 'shopping_list', 'quantity', 'in_cart')
     list_filter = ('in_cart',)
-
-@admin.register(IngredientInCart)
-class IngredientInCartAdmin(admin.ModelAdmin):
-    list_display = ('ingredient', 'shopping_list', 'quantity')
