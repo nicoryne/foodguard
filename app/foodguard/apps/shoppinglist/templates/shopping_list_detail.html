@@ -1,11 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FoodGuard - Shopping List - Ingredient Form</title>
-  </head>
-  <body>
-    <h1>Shopping List Detail</h1>
-  </body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+<main>
+  <section>
+    <div>
+      <h1>My Shopping List</h1>
+      <a href="{% url 'shopping-list-ingredient-create' shopping_list.shopping_list_id %}">Add New Ingredient</a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Ingredient</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ingredient in ingredients_to_buy %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ ingredient.ingredient.name }}</td>
+          <td>{{ ingredient.quantity }}</td>
+          <td>
+            {% if ingredient.in_cart %}
+              In Cart
+            {% else %}
+              To Buy
+            {% endif %}
+          </td>
+          <td>
+            {% if ingredient.in_cart %}
+              <button disabled>In Cart</button>
+            {% else %}
+              <!-- Remove ingredient from cart -->
+              <form method="post" action="{% url 'ingredient-in-cart-delete' ingredient.id %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Remove</button>
+              </form>
+            {% endif %}
+
+            <!-- Edit ingredient -->
+            <a href="{% url 'ingredient-update' shopping_list.shopping_list_id ingredient.pk %}">Edit</a>
+
+          <!-- Delete ingredient -->
+          <form method="post" action="{% url 'ingredient-delete' shopping_list.shopping_list_id ingredient.pk %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">No ingredients in the shopping list yet.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</main>
+
+{% endblock content %}
