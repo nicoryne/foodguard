@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
+<div>
     <h2>User List</h2>
     <table>
         <thead>
@@ -8,7 +8,6 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
-                <th>Phone</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,16 +17,95 @@
                 <td>{{ user.fname }}</td>
                 <td>{{ user.lname }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.phone_number }}</td>
                 <td>
-                    <a href="{% url 'user-detail' user.pk %}">View</a> |
-                    <a href="{% url 'user-update' user.pk %}">Update</a> |
-                    <a href="{% url 'user-delete' user.pk %}">Delete</a>
+                    <a href="{% url 'user-detail' user.pk %}" class="btn-action">Details</a>
+                    <a href="{% url 'user-update' user.pk %}" class="btn-action">Update</a>
+                    <a href="{% url 'user-delete' user.pk %}" class="btn-action btn-delete">Delete</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'user-create' %}">Create New User</a>
+    <a href="{% url 'user-create' %}" class="btn-create">Create New User</a>
 </div>
+
+<style>
+    /* Header Styling */
+    h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+    }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    thead {
+        background-color: #f0f0f0;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        font-weight: bold;
+        color: #333;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Action Button Styling */
+    .btn-action {
+        margin: 0 5px;
+        padding: 6px 12px;
+        color: white;
+        background-color: #007bff;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .btn-action:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+    }
+
+    .btn-delete:hover {
+        background-color: #c82333;
+    }
+
+    /* Create New User Button Styling */
+    .btn-create {
+        display: inline-block;
+        margin: 20px 0;
+        padding: 10px 20px;
+        color: white;
+        background-color: #28a745;
+        border-radius: 4px;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.3s;
+    }
+
+    .btn-create:hover {
+        background-color: #218838;
+    }
+</style>
 {% endblock %}

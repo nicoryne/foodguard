@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,35 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <style>
-        /* General Container Styling */
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 30px;
-            background-color: #fff3e0;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        /* General Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Header Styling */
-        .container h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
+        h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
             color: #333;
         }
 
         /* Form Group Styling */
         form .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
         form label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-size: 16px;
-            color: #666;
+            color: #555;
         }
 
         /* Input Fields Styling */
@@ -42,18 +40,27 @@
         form input[type="date"],
         form input[type="password"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 16px;
             margin-top: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        form input[type="text"]:focus,
+        form input[type="email"]:focus,
+        form input[type="date"]:focus,
+        form input[type="password"]:focus {
+            border-color: #4caf50;
+            outline: none;
         }
 
         /* Button Styling */
         button.btn-submit {
             background-color: #4caf50;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
             border-radius: 20px;
             cursor: pointer;
@@ -79,10 +86,25 @@
         a.btn-cancel:hover {
             text-decoration: underline;
         }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .container h1 {
+                font-size: 24px;
+            }
+
+            button.btn-submit {
+                padding: 10px 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div>
         <h1>Create a New Account</h1>
         <form method="post">
             {% csrf_token %}
@@ -110,10 +132,10 @@
                 <label for="id_password">Password:</label>
                 <input type="password" name="password" id="id_password" required>
             </div>
-            <button type="submit" class="btn-submit">Sign Up</button>
-            <!-- Optionally, you can add a cancel link here -->
-            <!-- <a href="#" class="btn-cancel">Cancel</a> -->
+ <button type="submit" class="btn-submit">Sign Up</button>
+ <a href="{% url 'user-list' %}" class="btn-cancel">Cancel</a>
         </form>
     </div>
 </body>
 </html>
+{% endblock %}
