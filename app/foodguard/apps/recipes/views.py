@@ -12,7 +12,7 @@ class RecipeListView(ListView):
 class RecipeDetailView(DetailView):
     model = Recipe
     template_name = 'recipe_detail.html'
-    context_object_name = 'recipe'
+    context_object_name = 'recipes'
 
 # Create New Recipe
 class RecipeCreateView(CreateView):
