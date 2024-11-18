@@ -20,6 +20,7 @@ urlpatterns = [
     
     # Recipes Path
     path('recipes/', include('apps.recipes.urls')),
+    path('recipe_list/', include('apps.recipes.urls')),
     
     # Shopping List Path
     path('shopping-list/', include('apps.shoppinglist.urls')),

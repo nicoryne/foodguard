@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="__recipes" style="padding: 20px;">
+  <div class="container" style="padding: 20px; border-radius: 10px;">
+
+    <!-- Trending Recipes Section -->
+    <div class="section trending-recipes" style="margin-bottom: 20px;">
+      <h2 style="font-size: 28px; color: #333; margin-bottom: 15px;">Trending Recipe</h2>
+      <div class="trending-container" style="display: flex; gap: 15px; overflow-x: auto;">
+        {% for i in "12345" %}
+        <div class="placeholder-card" style="flex: 0 0 auto; width: 250px; height: 150px; background-color: #e0e0e0; border-radius: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden;">
+          <span style="font-size: 18px; color: #999;">Placeholder</span>
+          <div style="background-color: white; width: 100%; padding: 5px 0; text-align: center; font-size: 16px; color: #333; font-weight: bold; position: absolute; bottom: 0;">
+            Bacon & Cheese Burger
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Search and Grid View Section -->
+    <div class="section search-recipes" style="margin-bottom: 20px;">
+      <h2 style="font-size: 24px; color: #333; margin-bottom: 15px;">Search For Recipe</h2>
+      <div class="search-bar" style="margin-bottom: 20px; display: flex; align-items: center;">
+        <input type="text" placeholder="Search for a recipe..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+        <button style="background-color: #e74c3c; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-left: 10px;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 20px; height: 20px;">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.2-5.4a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0z" />
+          </svg>
+        </button>
+      </div>
+      <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">
+        {% for i in "123456789101112" %}
+        <div class="placeholder-card" style="width: 100%; height: 150px; background-color: #e0e0e0; border-radius: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden;">
+          <span style="font-size: 18px; color: #999;">Placeholder</span>
+          <div style="background-color: white; width: 100%; padding: 5px 0; text-align: center; font-size: 16px; color: #333; font-weight: bold; position: absolute; bottom: 0;">
+            Bacon & Cheese Burger
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</main>
+{% endblock content %}
