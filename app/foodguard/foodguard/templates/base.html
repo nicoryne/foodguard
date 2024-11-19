@@ -19,16 +19,12 @@
     <!-- End of Importing Fonts-->
 
     <!-- Importing the base stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/dist/output.css' %}" />
     <!-- End of Importing base stylesheet -->
-
-    <!-- Importing the components stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/components.css' %}" />
-    <!-- End of Importing components stylesheet -->
   </head>
   <body>
     <div class="site-wrapper">
-      {% block navbar %} {% include 'navbar_base.html' %} {% endblock navbar %} {% block content %}
+      {% block navbar %} {% include 'navbar.html' %} {% endblock navbar %} {% block content %}
       {%endblock content %} {% block footer %} {% endblock footer %}
     </div>
   </body>

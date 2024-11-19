@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'apps.recipes.apps.RecipesConfig',
     'apps.shoppinglist.apps.ShoppingListConfig',
     'apps.users.apps.UsersConfig',
+    
+    'django_sass'
 ]
 
 
