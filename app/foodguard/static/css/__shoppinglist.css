@@ -217,3 +217,92 @@
   background-color: var(--primary-coral);
   color: white;
 }
+
+/* Modal Styling */
+.__shoppinglist .modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0s 0.4s;
+}
+
+.__shoppinglist .modal.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease;
+}
+
+.__shoppinglist .modal-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+}
+
+.__shoppinglist .modal-content h3 {
+  font-size: 1.4rem;
+  color: var(--primary-coral);
+  margin-bottom: 20px;
+}
+
+.__shoppinglist .modal-content label {
+  font-size: 0.9rem;
+  color: var(--primary-coral);
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.__shoppinglist .modal-content input,
+.__shoppinglist .modal-content select,
+.__shoppinglist .modal-content option {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-weight: 400;
+}
+
+.__shoppinglist .modal-content .btn-submit {
+  background-color: var(--primary-coral);
+}
+
+.__shoppinglist .modal-content .btn-submit:hover {
+  background-color: var(--primary-sage);
+  color: white;
+
+  outline: 2px solid var(--primary-sage);
+}
+
+.__shoppinglist .modal-content .btn-close {
+  background-color: gray;
+}
+
+.__shoppinglist .modal-content .btn-close:hover {
+  background-color: gray;
+  color: white;
+
+  outline: 2px solid gray;
+}
+
+.__shoppinglist .modal-content .btn-close:hover {
+  background-color: darkgray;
+}
+
+.__shoppinglist .modal-btn-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}

@@ -23,7 +23,7 @@ urlpatterns = [
     path('recipe_list/', include('apps.recipes.urls')),
     
     # Shopping List Path
-    path('shopping-list/', include('apps.shoppinglist.urls')),
+    path('shoppinglist/', include('apps.shoppinglist.urls')),
     
     # Users Path
     path('users/', include('apps.users.urls')), 

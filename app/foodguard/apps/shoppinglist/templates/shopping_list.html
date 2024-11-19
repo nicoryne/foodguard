@@ -63,8 +63,8 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
-          {% for ingredient in ingredients %}
+        <tbody class="ingredient-table-body">
+          {% for ingredient in ingredientsToBuy %}
           <tr class="{% if ingredient.in_cart %}in-cart{% else %}not-in-cart{% endif %}">
             <td>{{ forloop.counter }}</td>
             <td>{{ ingredient.ingredient.name }}</td>
@@ -142,9 +142,14 @@
           Total Items</span
         >
       </div>
-      <button class="btn-shop" onclick="finishShopping()">Finish Shopping</button>
+      <form action="{% url 'shoppinglist:finish_list' list_id=1 %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn-shop" id="finish-shopping-btn">Finish Shopping</button>
+      </form>
     </div>
   </div>
+
+  {% include 'add_ingredient.html' %}
 </main>
 
 {% endblock content%}
