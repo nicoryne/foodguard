@@ -1,0 +1,334 @@
+/**
+ * Utility Files
+ * - colors: color variables (i.e. $primary, $secondary)
+ * - mixins: reusable mixins for commonly used CSS patterns (i.e. center, webkits)
+ * - typography: typography variables and font-size mixins (i.e. $font-base, text-size-base)
+ */
+/**
+ * The primary font family used throughout the site.
+ */
+/**
+  * Define font sizes using rem units for scalability and accessibility.
+  * 1rem is equivalent to the root element's font size (typically 16px).
+  */
+/**
+  * Font weights for varying levels of text emphasis.
+  */
+/**
+  * Line height values for controlling text spacing and readability.
+  */
+/**
+  * Letter spacing values for controlling the spacing between characters.
+  */
+/**
+  * Mixin for applying font size, line height, and letter spacing.
+  * 
+  * @param $size: The font size (e.g., $font-base, $font-lg, etc.).
+  * @param $line-height: The line height value (e.g., $line-height-normal).
+  * @param $letter-spacing: The letter spacing (e.g., $letter-spacing-normal).
+  */
+/**
+  * Mixin for extra small text size (12px).
+  */
+/**
+  * Mixin for small text size (14px).
+  */
+/**
+  * Mixin for base text size (16px).
+  */
+/**
+  * Mixin for large text size (18px).
+  */
+/**
+  * Mixin for extra large text size (20px).
+  */
+/**
+  * Mixin for 2xl text size (24px).
+  */
+/**
+  * Mixin for 3xl text size (30px).
+  */
+/**
+  * Mixin for 4xl text size (36px).
+  */
+/**
+  * Mixin for 5xl text size (48px).
+  */
+/**
+  * Mixin for 6xl text size (60px).
+  */
+/**
+  * Mixin for 7xl text size (72px).
+  */
+/**
+  * Mixin for 8xl text size (96px).
+  */
+/**
+  * Mixin for 9xl text size (128px).
+  */
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body,
+body * {
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0;
+  font-family: "Raleway", sans-serif;
+  color: #2d2d2d;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.25;
+  letter-spacing: 0.025em;
+}
+
+small {
+  font-size: 0.875rem;
+  line-height: 0.8;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+a {
+  font-size: 0.875rem;
+  line-height: 0.8;
+  letter-spacing: 0;
+  transition: color 0.4s ease;
+  -webkit-transition: color 0.4s ease;
+  -moz-transition: color 0.4s ease;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+a:hover {
+  color: #e47171;
+}
+
+a:active {
+  color: #d83131;
+}
+
+ul {
+  gap: 1.125rem;
+}
+
+ul > li {
+  list-style: none;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  justify-content: space-between;
+  background-image: url(/static/img/bg_doodle.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.btn-primary {
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  background-color: #e47171;
+  color: white;
+  border: none;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-inline: 2.25rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #e05c5c;
+  color: white;
+}
+
+.btn-primary:active {
+  background-color: #d83131;
+  color: white;
+}
+
+.btn-secondary {
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  background-color: #aac6a5;
+  color: white;
+  border: none;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-inline: 2.25rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #9bbc95;
+  color: white;
+}
+
+.btn-secondary:active {
+  background-color: #7ea876;
+  color: white;
+}
+
+.btn-gray {
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  background-color: gray;
+  color: white;
+  border: none;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-inline: 2.25rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-gray:hover {
+  background-color: #737373;
+  color: white;
+}
+
+.btn-gray:active {
+  background-color: #5a5a5a;
+  color: white;
+}
+
+.icon-sm {
+  width: 3.25rem;
+}
+
+.icon-md {
+  width: 4.75rem;
+}
+
+.icon-lg {
+  width: 6rem;
+}
+
+#navigation-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 8vh;
+  background-color: white;
+  border-bottom: 2px solid #e47171;
+  justify-content: center;
+  position: fixed;
+}
+
+#navigation-header button {
+  font-size: 0.875rem;
+  line-height: 0.8;
+  letter-spacing: 0;
+  font-weight: 700;
+  height: 50%;
+}
+
+#navigation-header nav {
+  display: inherit;
+  gap: 2rem;
+}
+
+#navigation-header ul {
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+}
+
+#navigation-header .wrapper {
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+@media (min-width: 1025px) {
+  #navigation-header .wrapper {
+    width: 80%;
+  }
+}
+
+#hero {
+  margin-top: 8vh;
+  height: 50vh;
+  padding: 2rem;
+  padding-top: 8rem;
+}
+
+#hero .wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+@media (min-width: 1025px) {
+  #hero .wrapper {
+    width: 80%;
+  }
+}
+
+#hero header {
+  display: flex;
+  flex-direction: column;
+}
+
+#hero header p {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  letter-spacing: 0.025em;
+  font-weight: 600;
+  color: #7c7b7b;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+#hero header button {
+  height: 2.75rem;
+  width: 40%;
+}
+
+#site-footer {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 7vh;
+  width: 100%;
+  background-color: #e47171;
+}
+
+#site-footer small {
+  color: white;
+}

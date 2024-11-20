@@ -1,0 +1,177 @@
+// _typography.scss
+
+// =============================================================================
+// FONT FAMILIES
+// =============================================================================
+
+/**
+ * The primary font family used throughout the site.
+ */
+$font-family-primary: "Raleway", sans-serif;
+
+// =============================================================================
+// FONT SIZES
+// =============================================================================
+
+/**
+  * Define font sizes using rem units for scalability and accessibility.
+  * 1rem is equivalent to the root element's font size (typically 16px).
+  */
+$font-xs: 0.75rem; // 12px
+$font-sm: 0.875rem; // 14px
+$font-base: 1rem; // 16px
+$font-lg: 1.125rem; // 18px
+$font-xl: 1.25rem; // 20px
+$font-2xl: 1.5rem; // 24px
+$font-3xl: 1.875rem; // 30px
+$font-4xl: 2.25rem; // 36px
+$font-5xl: 3rem; // 48px
+$font-6xl: 3.7rem; // 60px
+$font-7xl: 4.5rem; // 72px
+$font-8xl: 6rem; // 96px
+$font-9xl: 8rem; // 128px
+
+// =============================================================================
+// FONT WEIGHTS
+// =============================================================================
+
+/**
+  * Font weights for varying levels of text emphasis.
+  */
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// =============================================================================
+// LINE HEIGHTS
+// =============================================================================
+
+/**
+  * Line height values for controlling text spacing and readability.
+  */
+$line-height-tight: 0.8; // Tight line height for smaller text
+$line-height-normal: 1; // Standard line height for readability
+$line-height-loose: 1.25; // Loose line height for larger text and headings
+
+// =============================================================================
+// LETTER SPACING
+// =============================================================================
+
+/**
+  * Letter spacing values for controlling the spacing between characters.
+  */
+$letter-spacing-normal: 0; // Default letter spacing
+$letter-spacing-wide: 0.025em; // Slightly wider letter spacing
+$letter-spacing-wider: 0.5em; // More pronounced letter spacing for larger text
+
+// =============================================================================
+// TYPOGRAPHY MIXINS
+// =============================================================================
+
+/**
+  * Mixin for applying font size, line height, and letter spacing.
+  * 
+  * @param $size: The font size (e.g., $font-base, $font-lg, etc.).
+  * @param $line-height: The line height value (e.g., $line-height-normal).
+  * @param $letter-spacing: The letter spacing (e.g., $letter-spacing-normal).
+  */
+@mixin text-size($size, $line-height, $letter-spacing) {
+  font-size: $size;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+// Specific text size mixins for convenience
+
+/**
+  * Mixin for extra small text size (12px).
+  */
+@mixin text-size-xs {
+  @include text-size($font-xs, $line-height-tight, $letter-spacing-wider);
+}
+
+/**
+  * Mixin for small text size (14px).
+  */
+@mixin text-size-sm {
+  @include text-size($font-sm, $line-height-tight, $letter-spacing-normal);
+}
+
+/**
+  * Mixin for base text size (16px).
+  */
+@mixin text-size-base {
+  @include text-size($font-base, $line-height-normal, $letter-spacing-normal);
+}
+
+/**
+  * Mixin for large text size (18px).
+  */
+@mixin text-size-lg {
+  @include text-size($font-lg, $line-height-normal, $letter-spacing-normal);
+}
+
+/**
+  * Mixin for extra large text size (20px).
+  */
+@mixin text-size-xl {
+  @include text-size($font-xl, $line-height-loose, $letter-spacing-wide);
+}
+
+/**
+  * Mixin for 2xl text size (24px).
+  */
+@mixin text-size-2xl {
+  @include text-size($font-2xl, $line-height-loose, $letter-spacing-wide);
+}
+
+/**
+  * Mixin for 3xl text size (30px).
+  */
+@mixin text-size-3xl {
+  @include text-size($font-3xl, $line-height-loose, $letter-spacing-wide);
+}
+
+/**
+  * Mixin for 4xl text size (36px).
+  */
+@mixin text-size-4xl {
+  @include text-size($font-4xl, $line-height-loose, $letter-spacing-wide);
+}
+
+/**
+  * Mixin for 5xl text size (48px).
+  */
+@mixin text-size-5xl {
+  @include text-size($font-5xl, $line-height-loose, $letter-spacing-wide);
+}
+
+/**
+  * Mixin for 6xl text size (60px).
+  */
+@mixin text-size-6xl {
+  @include text-size($font-6xl, $line-height-loose, $letter-spacing-wide);
+}
+
+/**
+  * Mixin for 7xl text size (72px).
+  */
+@mixin text-size-7xl {
+  @include text-size($font-7xl, $line-height-loose, $letter-spacing-wider);
+}
+
+/**
+  * Mixin for 8xl text size (96px).
+  */
+@mixin text-size-8xl {
+  @include text-size($font-8xl, $line-height-loose, $letter-spacing-wider);
+}
+
+/**
+  * Mixin for 9xl text size (128px).
+  */
+@mixin text-size-9xl {
+  @include text-size($font-9xl, $line-height-loose, $letter-spacing-wider);
+}

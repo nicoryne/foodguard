@@ -1,0 +1,73 @@
+// _mixins.scss
+
+@mixin gap($size) {
+  gap: $size;
+}
+
+@mixin button-style($bg, $fg) {
+  @include border-radius(12px);
+  @include transition(all, 0.4s);
+
+  background-color: $bg;
+  color: $fg;
+  border: none;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-inline: 2.25rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($bg, 5%);
+    color: lighten($fg, 5%);
+  }
+
+  &:active {
+    background-color: darken($bg, 15%);
+    color: lighten($fg, 15%);
+  }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-shadow($h-offset, $v-offset, $blur, $spread, $color) {
+  -webkit-box-shadow: $h-offset $v-offset $blur $spread $color;
+  -moz-box-shadow: $h-offset $v-offset $blur $spread $color;
+  box-shadow: $h-offset $v-offset $blur $spread $color;
+}
+
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+@mixin center {
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin transition($property, $duration, $timing-function: ease) {
+  transition: $property $duration $timing-function;
+  -webkit-transition: $property $duration $timing-function;
+  -moz-transition: $property $duration $timing-function;
+}
+
+@mixin breakpoint($size) {
+  @if $size == small {
+    @media (max-width: 600px) {
+      @content;
+    }
+  } @else if $size == medium {
+    @media (min-width: 601px) and (max-width: 1024px) {
+      @content;
+    }
+  } @else if $size == large {
+    @media (min-width: 1025px) {
+      @content;
+    }
+  }
+}

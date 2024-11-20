@@ -1,0 +1,8 @@
+asgiref==3.8.1
+Django==4.2.16
+django-appconf==1.0.6
+django-sass==1.1.0
+libsass==0.23.0
+sqlparse==0.5.1
+pytz==2024.1
+pillow==10.3.0

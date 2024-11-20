@@ -1,0 +1,15 @@
+// utilities.scss
+
+// =============================================================================
+// IMPORTS
+// =============================================================================
+
+/**
+ * Utility Files
+ * - colors: color variables (i.e. $primary, $secondary)
+ * - mixins: reusable mixins for commonly used CSS patterns (i.e. center, webkits)
+ * - typography: typography variables and font-size mixins (i.e. $font-base, text-size-base)
+ */
+@import "./utilities/colors";
+@import "./utilities/mixins";
+@import "./utilities/typography";
