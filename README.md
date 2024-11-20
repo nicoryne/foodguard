@@ -50,7 +50,7 @@ For our CSIT327 course project, we are developing **FoodGuard**, a food waste ma
 
 ### Step 1: Activate Virtual Environment
 
-#### For Linux/macOS:
+Activating a virtual environment ensures that the project runs with its own dependencies, isolated from other Python projects on your system.
 
 ```bash
 source ./env/bin/activate
@@ -64,12 +64,16 @@ source ./env/Scripts/activate
 
 ### Step 2: Install Dependencies
 
+With the virtual environment, install all necessary Python packages in one using requirements.txt file.
+
 ```bash
-    pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Step 3: Start the Django Development Server
 
+Run the Django development server to run the app locally.
+
 ```bash
-    python manage.py runserver
+python manage.py runserver
 ```
