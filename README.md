@@ -77,3 +77,13 @@ Run the Django development server to run the app locally.
 ```bash
 python manage.py runserver
 ```
+
+## ⚙️ Development Configurations
+
+### Django-SASS Watch Mode
+
+Enables watch mode for django-sass which will watch for changes in the `input.scss` file and automatically compiles them into the `output.css` file.
+
+```bash
+py manage.py sass static/styles/input.scss static/styles/dist/output.css --watch
+```
