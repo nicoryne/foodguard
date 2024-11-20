@@ -24,7 +24,7 @@
           <h2>My List</h1>
         </header>
         <div class="button-container">
-          <button id="btn-del">
+          <button id="btn-del" type="button" class="container-action-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               id="icon-trash"
@@ -41,7 +41,7 @@
               />
             </svg>
           </button>
-          <button id="btn-add" type="button">
+          <button id="btn-add" type="button" class="container-action-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               id="icon-add"
@@ -58,6 +58,19 @@
               />
             </svg>
           </button>
+          <button id="btn-cancel-del" type="button" class="container-checkbox hide">
+            <svg id="icon-xmark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-sm">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+          </button>
+          <form id="delete-ingredients-form" class="container-checkbox hide" action="{% url 'shoppinglist:delete_ingredient_to_buy' list_id=1 %}" method="POST">
+            {% csrf_token %}
+           <button id="btn-confirm-del" type="submit">
+            <svg id="icon-checkmark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-sm">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+          </button>
+          </form>
         </div>
       </div>
 
@@ -69,9 +82,10 @@
               <th>#</th>
               <th>Ingredient</th>
               <th>Quantity</th>
-              <th></th>
-              <th></th>
-              <th></th>
+              <th class=""></th>
+              <th class=""></th>
+              <th class=""></th>
+              <th class=""></th>
             </tr>
           </thead>
           <tbody>
@@ -80,7 +94,7 @@
               <td>{{ forloop.counter }}</td>
               <td>{{ ingredient.ingredient.name }}</td>
               <td>{{ ingredient.quantity }}</td>
-              <td>
+              <td class="container-action-btn">
                 <form action="{% url 'shoppinglist:quantity_change' list_id=1 ingredient_id=ingredient.ingredient_id is_add=0 %}" method="POST">
                 {% csrf_token %}
                 <button id="reduce-qty-btn">
@@ -90,7 +104,7 @@
                 </button>
               </form>
               </td>
-              <td>
+              <td class="container-action-btn">
                 <form action="{% url 'shoppinglist:quantity_change' list_id=1 ingredient_id=ingredient.ingredient_id is_add=1 %}" method="POST">
                   {% csrf_token %}
                   <button id="add-qty-btn">
@@ -100,7 +114,7 @@
                   </button>
                 </form>
               </td>
-              <td>
+              <td class="container-action-btn">
                 <form action="{% url 'shoppinglist:toggle_to_cart' list_id=1 ingredient_id=ingredient.ingredient_id %}" method="POST">
                 {% csrf_token %}
                 <button id="btn-tocart">
@@ -120,6 +134,9 @@
                   </svg>
                 </button>
               </form>
+              </td>
+              <td class="container-checkbox hide">
+                <input type="checkbox" name="selected_ingredients" value="{{ ingredient.ingredient_id }}" class="ingredient-checkbox">
               </td>
             </tr>
             {% endfor%}
@@ -183,5 +200,4 @@
 
   {% include 'add_ingredient.html' %}
 </main>
-
 {% endblock content%}

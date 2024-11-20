@@ -8,7 +8,7 @@
     <h3>Add Ingredient</h3>
   </header>
 
-  {{ form.media }} {% csrf_token %}
+  {% csrf_token %}
   <div class="input-container">
     <div class="input-group">
       <label for="ingredient">Ingredient</label>
@@ -21,7 +21,7 @@
 
     <div class="input-group">
       <label for="quantity">Quantity</label>
-      <input type="number" id="inpt-quantity" name="quantity" required />
+      <input type="number" id="inpt-quantity" name="quantity" min="1" step="1" required />
     </div>
   </div>
 
@@ -36,15 +36,47 @@
     const ingredientForm = document.getElementById("form-add-ingredient");
     const addButton = document.getElementById("btn-add");
     const closeButton = document.getElementById("btn-close");
+    const delButton = document.getElementById("btn-del");
+    const delCancelButton = document.getElementById("btn-cancel-del");
+    const containerActionButtons = document.querySelectorAll(".container-action-btn");
+    const containerCheckbox = document.querySelectorAll(".container-checkbox");
+
+    const show = (item) => {
+      item.classList.remove("hide");
+      item.classList.add("show");
+    };
+
+    const hide = (item) => {
+      item.classList.remove("show");
+      item.classList.add("hide");
+    };
 
     const openForm = () => {
-      ingredientForm.classList.remove("hide");
-      ingredientForm.classList.add("show");
+      show(ingredientForm);
     };
 
     const closeForm = () => {
-      ingredientForm.classList.remove("show");
-      ingredientForm.classList.add("hide");
+      hide(ingredientForm);
+    };
+
+    const actionShow = () => {
+      containerActionButtons.forEach((container) => {
+        show(container);
+      });
+
+      containerCheckbox.forEach((container) => {
+        hide(container);
+      });
+    };
+
+    const actionDelete = () => {
+      containerActionButtons.forEach((container) => {
+        hide(container);
+      });
+
+      containerCheckbox.forEach((container) => {
+        show(container);
+      });
     };
 
     if (addButton) {
@@ -54,5 +86,41 @@
     if (closeButton) {
       closeButton.addEventListener("click", closeForm);
     }
+
+    if (delButton) {
+      delButton.addEventListener("click", actionDelete);
+    }
+
+    if (delCancelButton) {
+      delCancelButton.addEventListener("click", actionShow);
+    }
+
+    document.getElementById("delete-ingredients-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const selectedIds = Array.from(document.querySelectorAll(".ingredient-checkbox:checked")).map(
+        (checkbox) => checkbox.value
+      );
+
+      if (selectedIds.length === 0) {
+        alert("No ingredients selected for deletion!");
+        return;
+      }
+
+      fetch("{% url 'shoppinglist:delete_ingredient_to_buy' list_id=1 %}", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": "{{ csrf_token }}",
+        },
+        body: JSON.stringify({ selected_ingredients: selectedIds }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            location.reload();
+          }
+        });
+    });
   });
 </script>

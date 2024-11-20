@@ -1,3 +1,4 @@
+import json
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
@@ -35,8 +36,6 @@ def finish_list(request, list_id):
     shopping_list.save()
     return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
     
-
-
 def add_ingredient_to_buy(request, list_id):
     if request.method != "POST":
         return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
@@ -59,7 +58,24 @@ def add_ingredient_to_buy(request, list_id):
             ingredient_to_buy.save()
 
         return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
-    
+
+def delete_ingredient_to_buy(request, list_id):
+    shopping_list = get_object_or_404(ShoppingList, shopping_list_id=list_id)
+
+    if request.method == "POST":
+        data = json.loads(request.body)
+        selected_ingredients_ids = data.get('selected_ingredients', [])
+
+        if not selected_ingredients_ids:
+            return JsonResponse({'success': False})
+
+        for ingredient_id in selected_ingredients_ids:
+            ingredient = shopping_list.ingredients_to_buy.get(ingredient_id=ingredient_id)
+            ingredient.delete()
+
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
+ 
 def toggle_to_cart(request, list_id, ingredient_id):    
     shopping_list = get_object_or_404(ShoppingList, shopping_list_id=list_id)
     
@@ -98,8 +114,8 @@ def quantity_change(request, list_id, ingredient_id, is_add):
 
     return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
         
-    
-    
+
+
 
         
         

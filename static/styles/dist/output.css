@@ -298,14 +298,12 @@ table {
 }
 
 .show {
-  display: block;
   opacity: 1;
   visibility: visible;
   transition: opacity 0.3s ease, visibility 0s;
 }
 
 .hide {
-  display: none;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0s linear 0.3s;
@@ -451,6 +449,13 @@ table {
 #shopping-list section .button-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#shopping-list section .button-container form {
+  justify-content: center;
+  align-items: center;
 }
 
 #shopping-list section .table-container {
@@ -603,12 +608,14 @@ table {
   stroke: #e47171;
 }
 
-#shopping-list #icon-add {
+#shopping-list #icon-add,
+#shopping-list #icon-checkmark {
   fill: white;
   stroke: #aac6a5;
 }
 
-#shopping-list #icon-add:hover {
+#shopping-list #icon-add:hover,
+#shopping-list #icon-checkmark:hover {
   fill: #aac6a5;
   stroke: white;
 }
@@ -620,6 +627,11 @@ table {
 
 #shopping-list #icon-trash:hover {
   fill: #f3ef9b;
+  stroke: white;
+}
+
+#shopping-list #icon-xmark {
+  fill: gray;
   stroke: white;
 }
 
@@ -639,6 +651,10 @@ table {
   align-items: center;
   gap: 1rem;
   margin-bottom: 16px;
+}
+
+#shopping-list .button-container {
+  gap: 1rem;
 }
 
 #form-add-ingredient {
