@@ -1,16 +1,19 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<main id="shoppinglist">
-  <div class="container">
-    <div class="section list-section">
+<main id="shopping-list">
+  <!-- Wrapper -->
+  <div class="wrapper">
+    <!-- View Section-->
+    <section>
       <div class="header-container">
         <header>
           <svg
             xmlns="http://www.w3.org/2000/svg"
+            id="icon-list"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="header-logo"
+            class="icon-md"
           >
             <path
               stroke-linecap="round"
@@ -18,17 +21,18 @@
               d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z"
             />
           </svg>
-
-          <h2>To Buy</h2>
+          <h2>My List</h1>
         </header>
         <div class="button-container">
-          <button class="header-action-btn cta-button del-btn">
+          <button id="del-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
+              id="icon-trash"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
+              class="icon-sm"
             >
               <path
                 stroke-linecap="round"
@@ -37,13 +41,15 @@
               />
             </svg>
           </button>
-          <button class="header-action-btn cta-button add-btn">
+          <button id="add-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
+              id="icon-add"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
+              class="icon-sm"
             >
               <path
                 stroke-linecap="round"
@@ -54,102 +60,119 @@
           </button>
         </div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Ingredient</th>
-            <th>Quantity</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody class="ingredient-table-body">
-          {% for ingredient in ingredientsToBuy %}
-          <tr class="{% if ingredient.in_cart %}in-cart{% else %}not-in-cart{% endif %}">
-            <td>{{ forloop.counter }}</td>
-            <td>{{ ingredient.ingredient.name }}</td>
-            <td>{{ ingredient.quantity }}</td>
-            <td>
-              <button class="cta-button row-action-btn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                  />
-                </svg>
-              </button>
-              <button class="cta-button row-action-btn" onclick="toggleInCart({{ ingredient.id }})">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
-                  />
-                </svg>
-              </button>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
 
-    <div class="section summary-section">
-      <header>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="header-logo"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-          />
-        </svg>
+      <!-- Ingredients To Buy Table -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Ingredient</th>
+              <th>Quantity</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ingredient in ingredients_to_buy %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ ingredient.name }}</td>
+              <td>{{ ingredient.quantity }}</td>
+              <td>
+                <button id="minus-btn">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="icon-sm"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                    />
+                  </svg>
+                </button>
+                <button id="tocart-btn">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="icon-sm"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+            {% endfor%}
+          </tbody>
+        </table>
+      <div>
+        <!-- End oF Ingredients To Buy Table-->
+    </section>
+    <!-- End of View Section-->
 
-        <h2>In Cart</h2>
-      </header>
-      <div class="summary-box">
-        <span class="items-left"
-          ><h3>{{ items_left }}</h3>
-          Items Left</span
-        >
-        <span class="items-in-cart"
-          ><h3>{{ items_in_cart }}</h3>
-          Items in Cart</span
-        >
-        <span class="items-total"
-          ><h3>{{ total_items }}</h3>
-          Total Items</span
-        >
+    <!-- Summary Aside -->
+    <aside>
+      <div class="header-container">
+        <header>
+          <!-- Add SVG-->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            id="icon-cart"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="icon-md"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+            />
+          </svg>
+          <h2>In Cart</h1>
+        </header>
       </div>
+
+      <div class="content-container">
+        <div class="inner-card-container">
+          <div id="card-left" class="card">
+            <p>{{ items_left }}</p>
+            <h3>Items Left</h3>
+          </div>
+  
+          <div id="card-incart" class="card">
+            <p>{{ items_in_cart }}</p>
+            <h3>Items in Cart</h3>
+          </div>
+        </div>
+
+        <div id="card-total" class="card">
+          <p>{{ total_items }}</p>
+          <h3>Total Items</h3>
+        </div>
+      </div>
+
       <form action="{% url 'shoppinglist:finish_list' list_id=1 %}" method="POST">
         {% csrf_token %}
-        <button type="submit" class="btn-shop" id="finish-shopping-btn">Finish Shopping</button>
+        <button type="submit" class="btn-inverse-primary" id="finish-btn">Finish Shopping</button>
       </form>
-    </div>
+    </aside>
+    <!-- End of Summary Aside -->
   </div>
 
-  {% include 'add_ingredient.html' %}
+  
 </main>
 
 {% endblock content%}

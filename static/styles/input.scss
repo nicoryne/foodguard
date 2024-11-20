@@ -30,8 +30,27 @@ body * {
   color: $body-fg;
 }
 
+main {
+  margin-top: 10vh;
+  padding: 2rem;
+  padding-top: 8rem;
+  min-height: 80vh;
+}
+
 h1 {
   @include text-size-5xl;
+}
+
+h2 {
+  @include text-size-4xl;
+}
+
+h3 {
+  @include text-size-2xl;
+}
+
+h4 {
+  @include text-size-xl;
 }
 
 small {
@@ -63,6 +82,13 @@ ul > li {
   list-style: none;
 }
 
+table {
+  overflow: hidden;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border-spacing: 0;
+}
+
 // =============================================================================
 // CLASS STYLES
 // =============================================================================
@@ -84,6 +110,10 @@ ul > li {
 .btn {
   &-primary {
     @include button-style($primary, white);
+  }
+
+  &-inverse-primary {
+    @include button-style(white, $primary);
   }
 
   &-secondary {
@@ -127,7 +157,7 @@ ul > li {
   button {
     @include text-size-sm;
     font-weight: $font-weight-bold;
-    height: 50%;
+    height: 40%;
   }
 
   nav {
@@ -155,10 +185,6 @@ ul > li {
 }
 
 #hero {
-  margin-top: 8vh;
-  padding: 2rem;
-  padding-top: 8rem;
-
   .wrapper {
     @include flex(row);
     @include center;
@@ -199,5 +225,211 @@ ul > li {
 
   small {
     color: white;
+  }
+}
+
+#shopping-list {
+  width: 100%;
+
+  .wrapper {
+    @include flex(row);
+    @include center;
+
+    margin: 0 auto;
+    height: 100%;
+    gap: 2rem;
+    padding-inline: 10vw;
+  }
+
+  section,
+  aside {
+    @include border-radius(24px);
+    @include shadow-lg;
+    padding: 2rem;
+    height: 100%;
+  }
+
+  section {
+    background-color: white;
+    width: 60%;
+
+    h2 {
+      color: $primary;
+    }
+
+    button {
+      background: none;
+      outline: none;
+      border: none;
+    }
+
+    .button-container {
+      @include flex(row);
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      @include border-radius(12px);
+      width: 100%;
+    }
+
+    thead {
+      background-color: $primary;
+    }
+
+    th {
+      @include text-size-lg;
+      color: white;
+      font-weight: 600;
+      padding: 1rem;
+      text-align: left;
+    }
+
+    td {
+      @include text-size-xs;
+      font-weight: 600;
+      padding: 0.6rem;
+      text-align: center;
+      border-bottom: 1px solid #dcdcdc;
+    }
+
+    tr {
+      width: 100%;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .not-in-cart td {
+      color: var(--primary-coral);
+      stroke: var(--primary-coral);
+    }
+
+    .in-cart td {
+      color: var(--primary-sage);
+      stroke: var(--primary-sage);
+    }
+  }
+
+  aside {
+    @include flex(column);
+    background-color: $primary;
+    width: 40%;
+
+    h2 {
+      color: white;
+    }
+
+    button {
+      @include border-radius(8px);
+      width: 100%;
+      padding: 1rem;
+    }
+
+    .card {
+      @include flex(column);
+      @include center;
+      @include border-radius(8px);
+
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1.125rem;
+
+      p {
+        @include text-size-4xl;
+        font-weight: $font-weight-bold;
+      }
+
+      h3 {
+        text-align: center;
+      }
+    }
+
+    .content-container {
+      @include flex(column);
+      flex: 2;
+    }
+
+    .inner-card-container {
+      @include flex(row);
+      flex: 2;
+      width: 100%;
+      height: 100%;
+
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    #card-left {
+      background-color: white;
+
+      p,
+      h3 {
+        color: $tertiary;
+      }
+    }
+
+    #card-incart {
+      background-color: white;
+
+      p,
+      h3 {
+        color: $secondary;
+      }
+    }
+
+    #card-total {
+      background-color: darken($primary, 5%);
+
+      p,
+      h3 {
+        color: white;
+      }
+    }
+  }
+
+  #icon-list {
+    stroke: $primary;
+  }
+
+  #icon-add {
+    fill: white;
+    stroke: $secondary;
+
+    &:hover {
+      fill: $secondary;
+      stroke: white;
+    }
+  }
+
+  #icon-trash {
+    fill: white;
+    stroke: $accent;
+
+    &:hover {
+      fill: $accent;
+      stroke: white;
+    }
+  }
+
+  #icon-cart {
+    stroke: white;
+  }
+
+  .header-container {
+    @include flex(row);
+    justify-content: space-between;
+  }
+
+  header {
+    @include flex(row);
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 16px;
   }
 }

@@ -8,17 +8,17 @@ from .models import IngredientToBuy, ShoppingList
 
 def shopping_list_view(request, list_id):
     shopping_list = get_object_or_404(ShoppingList, shopping_list_id=list_id)
-    ingredientsToBuy = shopping_list.ingredients_to_buy.all()
+    ingredients_to_buy = shopping_list.ingredients_to_buy.all()
     ingredients = Ingredient.objects.all();
 
-    total_items = ingredientsToBuy.count()
-    items_in_cart = ingredientsToBuy.filter(in_cart=True).count()
+    total_items = ingredients_to_buy.count()
+    items_in_cart = ingredients_to_buy.filter(in_cart=True).count()
     items_left = total_items - items_in_cart
 
     context = {
         'shopping_list': shopping_list,
         'ingredients': ingredients,
-        'ingredientsToBuy': ingredientsToBuy,
+        'ingredients_to_buy': ingredients_to_buy,
         'total_items': total_items,
         'items_in_cart': items_in_cart,
         'items_left': items_left,
