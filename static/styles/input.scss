@@ -156,9 +156,9 @@ ul > li {
 
 #hero {
   margin-top: 8vh;
-  height: 50vh;
   padding: 2rem;
   padding-top: 8rem;
+
   .wrapper {
     @include flex(row);
     @include center;
