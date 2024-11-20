@@ -28,47 +28,82 @@ def shopping_list_view(request, list_id):
 def finish_list(request, list_id):
     shopping_list = get_object_or_404(ShoppingList, shopping_list_id=list_id)
     
-    if request.method == "POST":
-        shopping_list.clear_ingredients()
-        shopping_list.save()
-        return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
+    if request.method != "POST":
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
     
-    return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+    shopping_list.clear_ingredients()
+    shopping_list.save()
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
+    
+
 
 def add_ingredient_to_buy(request, list_id):
-    if request.method == 'POST':
-        form = IngredientToBuyForm(request.POST)
+    if request.method != "POST":
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+    
+    form = IngredientToBuyForm(request.POST)
+    
+    if form.is_valid():
+        ingredient_to_buy = form.save(commit=False)
+        ingredient_to_buy.shopping_list_id = list_id
         
-        if form.is_valid():
-            ingredient_to_buy = form.save(commit=False)
-            ingredient_to_buy.shopping_list_id = list_id
-            
-            existing_ingredient = IngredientToBuy.objects.filter(
-                shopping_list_id=list_id,
-                ingredient_id=ingredient_to_buy.ingredient_id
-            ).first()
-            
-            if existing_ingredient:
-                existing_ingredient.quantity += ingredient_to_buy.quantity;
-                existing_ingredient.save();
-            else:
-                ingredient_to_buy.save()
-            
-
-            ingredient_name = ingredient_to_buy.ingredient.name
-            quantity = ingredient_to_buy.quantity
-
-            return JsonResponse({
-                'success': True,
-                'ingredient_name': ingredient_name,
-                'quantity': quantity
-            })
+        existing_ingredient = IngredientToBuy.objects.filter(
+            shopping_list_id=list_id,
+            ingredient_id=ingredient_to_buy.ingredient_id
+        ).first()
+        
+        if existing_ingredient:
+            existing_ingredient.quantity += ingredient_to_buy.quantity;
+            existing_ingredient.save();
         else:
-            return JsonResponse({'success': False, 'errors': form.errors})
+            ingredient_to_buy.save()
 
-    return JsonResponse({'success': False, 'errors': 'Invalid method'})
+        return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
+    
+def toggle_to_cart(request, list_id, ingredient_id):    
+    shopping_list = get_object_or_404(ShoppingList, shopping_list_id=list_id)
+    
+    if request.method != "POST":
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+    
+    ingredient = shopping_list.ingredients_to_buy.get(ingredient_id=ingredient_id)
+
+    if not ingredient:
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+    
+    ingredient.in_cart = not ingredient.in_cart
+    ingredient.save()
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
+
+def quantity_change(request, list_id, ingredient_id, is_add):
+    shopping_list = get_object_or_404(ShoppingList, shopping_list_id=list_id)
+    
+    if request.method != "POST":
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+    
+    ingredient = shopping_list.ingredients_to_buy.get(ingredient_id=ingredient_id)
+    
+    if not ingredient:
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+    
+    if is_add == 1:
+        ingredient.quantity += 1;
+    else:
+        ingredient.quantity -=1;
+
+    if ingredient.quantity <= 0:
+        ingredient.delete()
+    else:
+        ingredient.save()
+
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
+        
+    
     
 
+        
+        
+        
 
 
 

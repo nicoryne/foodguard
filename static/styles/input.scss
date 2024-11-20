@@ -126,6 +126,10 @@ table {
 }
 
 .icon {
+  &-xs {
+    width: 1.5rem;
+  }
+
   &-sm {
     width: 3.25rem;
   }
@@ -137,6 +141,20 @@ table {
   &-lg {
     width: 6rem;
   }
+}
+
+.show {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s;
+}
+
+.hide {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
 }
 
 // =============================================================================
@@ -290,10 +308,12 @@ table {
     }
 
     td {
-      @include text-size-xs;
+      font-size: $font-xs;
+      text-align: left;
       font-weight: 600;
-      padding: 0.6rem;
-      text-align: center;
+      padding: 0.4rem;
+      text-align: left;
+      padding-inline: 1rem;
       border-bottom: 1px solid #dcdcdc;
     }
 
@@ -305,14 +325,20 @@ table {
       background-color: #f9f9f9;
     }
 
-    .not-in-cart td {
-      color: var(--primary-coral);
-      stroke: var(--primary-coral);
+    .not-in-cart td,
+    .not-in-cart td button * {
+      color: $primary;
+      stroke: $primary;
     }
 
-    .in-cart td {
-      color: var(--primary-sage);
-      stroke: var(--primary-sage);
+    .in-cart td,
+    .in-cart td button * {
+      color: $secondary;
+      stroke: $secondary;
+    }
+
+    td button {
+      margin-inline: 16px;
     }
   }
 
@@ -431,5 +457,53 @@ table {
     align-items: center;
     gap: 1rem;
     margin-bottom: 16px;
+  }
+}
+
+#form-add-ingredient {
+  @include flex(column);
+  @include border-radius(12px);
+  @include shadow-xl;
+  position: absolute;
+  inset: 0;
+  margin: 0 auto;
+  align-self: center;
+  background-color: white;
+
+  padding: 2rem;
+  width: fit-content;
+  height: fit-content;
+  gap: 1rem;
+
+  .input-container {
+    @include flex(column);
+    gap: 16px;
+
+    .input-group {
+      @include flex(column);
+      gap: 8px;
+    }
+
+    label {
+      font-weight: $font-weight-semibold;
+    }
+
+    input,
+    select {
+      padding: 0.6rem;
+    }
+  }
+
+  header {
+    h3 {
+      color: $primary;
+    }
+  }
+
+  .button-container {
+    button {
+      @include border-radius(4px);
+      height: 32px;
+    }
   }
 }

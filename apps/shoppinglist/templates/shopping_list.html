@@ -24,7 +24,7 @@
           <h2>My List</h1>
         </header>
         <div class="button-container">
-          <button id="del-btn">
+          <button id="btn-del">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               id="icon-trash"
@@ -41,7 +41,7 @@
               />
             </svg>
           </button>
-          <button id="add-btn">
+          <button id="btn-add" type="button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               id="icon-add"
@@ -70,39 +70,47 @@
               <th>Ingredient</th>
               <th>Quantity</th>
               <th></th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             {% for ingredient in ingredients_to_buy %}
-            <tr>
+            <tr class="{% if ingredient.in_cart %}in-cart{% else %}not-in-cart{% endif %}">
               <td>{{ forloop.counter }}</td>
-              <td>{{ ingredient.name }}</td>
+              <td>{{ ingredient.ingredient.name }}</td>
               <td>{{ ingredient.quantity }}</td>
               <td>
-                <button id="minus-btn">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="icon-sm"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                    />
+                <form action="{% url 'shoppinglist:quantity_change' list_id=1 ingredient_id=ingredient.ingredient_id is_add=0 %}" method="POST">
+                {% csrf_token %}
+                <button id="reduce-qty-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-xs">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
                   </svg>
                 </button>
-                <button id="tocart-btn">
+              </form>
+              </td>
+              <td>
+                <form action="{% url 'shoppinglist:quantity_change' list_id=1 ingredient_id=ingredient.ingredient_id is_add=1 %}" method="POST">
+                  {% csrf_token %}
+                  <button id="add-qty-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-xs">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form action="{% url 'shoppinglist:toggle_to_cart' list_id=1 ingredient_id=ingredient.ingredient_id %}" method="POST">
+                {% csrf_token %}
+                <button id="btn-tocart">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="icon-sm"
+                    class="icon-xs"
                   >
                     <path
                       stroke-linecap="round"
@@ -111,6 +119,7 @@
                     />
                   </svg>
                 </button>
+              </form>
               </td>
             </tr>
             {% endfor%}
@@ -166,13 +175,13 @@
 
       <form action="{% url 'shoppinglist:finish_list' list_id=1 %}" method="POST">
         {% csrf_token %}
-        <button type="submit" class="btn-inverse-primary" id="finish-btn">Finish Shopping</button>
+        <button type="submit" class="btn-inverse-primary" id="btn-finish">Finish Shopping</button>
       </form>
     </aside>
     <!-- End of Summary Aside -->
   </div>
 
-  
+  {% include 'add_ingredient.html' %}
 </main>
 
 {% endblock content%}
