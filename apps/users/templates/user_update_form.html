@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-    <h2>Update User</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Update User</button>
-    </form>
-    <a href="{% url 'user-detail' user.pk %}">Cancel</a>
+<div id="user-update">
+    <div class="container">
+        <h2>Update User</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn-action btn-update">Update User</button>
+            <a href="{% url 'user-list' %}" class="btn-action btn-cancel">Cancel</a>
+        </form>
+    </div>
 </div>
 {% endblock %}

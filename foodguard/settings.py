@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'apps.recipes.apps.RecipesConfig',
     'apps.shoppinglist.apps.ShoppingListConfig',
     'apps.users.apps.UsersConfig',
-    
     'django_sass'
 ]
 
@@ -137,3 +136,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = '/users/login/'
+LOGIN_REDIRECT_URL = '/ingredient/'
+LOGOUT_REDIRECT_URL = '/users/login/'

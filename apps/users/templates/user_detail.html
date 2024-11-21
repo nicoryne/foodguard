@@ -1,85 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-<div>
-    <h2>User Details</h2>
-    <div class="user-info">
-        <p><strong>First Name:</strong> {{ user.fname }}</p>
-        <p><strong>Last Name:</strong> {{ user.lname }}</p>
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
-        <p><strong>Date of Birth:</strong> {{ user.date_of_birth }}</p>
-    </div>
-    <div class="user-actions">
-        <a href="{% url 'user-update' user.pk %}" class="btn-action">Update</a>
-        <a href="{% url 'user-delete' user.pk %}" class="btn-action btn-delete">Delete</a>
-        <a href="{% url 'user-list' %}" class="btn-back">Back to List</a>
+<div id="user-details">
+    <div class="container">
+        <h2>User Details</h2>
+        <div class="user-info">
+            <p><strong>First Name:</strong> {{ user.fname }}</p>
+            <p><strong>Last Name:</strong> {{ user.lname }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+            <p><strong>Date of Birth:</strong> {{ user.date_of_birth }}</p>
+        </div>
+        <div class="user-actions">
+            <a href="{% url 'user-update' user.pk %}" class="btn-action btn-update">Update</a>
+            <a href="{% url 'user-delete' user.pk %}" class="btn-action btn-delete">Delete</a>
+            <a href="{% url 'user-list' %}" class="btn-action btn-back">Back to List</a>
+        </div>
     </div>
 </div>
-
-<style>
-    h2 {
-        font-size: 28px;
-        margin-bottom: 20px;
-        color: #333;
-        text-align: center;
-    }
-
-    /* User Info Styling */
-    .user-info {
-        margin-bottom: 30px;
-        padding: 15px;
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-
-    .user-info p {
-        margin: 10px 0;
-        font-size: 16px;
-        color: #555;
-    }
-
-    /* Action Buttons Styling */
-    .user-actions {
-        text-align: center;
-    }
-
-    .btn-action {
-        display: inline-block;
-        margin: 5px;
-        padding: 10px 15px;
-        color: white;
-        background-color: #007bff;
-        border-radius: 4px;
-        text-decoration: none;
-        transition: background-color 0.3s;
-    }
-
-    .btn-action:hover {
-        background-color: #0056b3;
-    }
-
-    .btn-delete {
-        background-color: #dc3545;
-    }
-
-    .btn-delete:hover {
-        background-color: #c82333;
-    }
-
-    .btn-back {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 15px;
-        color: white;
-        background-color: #28a745;
-        border-radius: 4px;
-        text-decoration: none;
-        transition: background-color 0.3s;
-    }
-
-    .btn-back:hover {
-        background-color: #218838;
-    }
-</style>
 {% endblock %}

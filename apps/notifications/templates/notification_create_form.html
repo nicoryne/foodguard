@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="notification">
+    <div class="container">
+        <h2>Create Notification</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Create Notification</button>
+        </form>
+        <a href="{% url 'notification-list' %}" class="btn btn-primary">Back to Notifications</a>
+    </div>
+</div>
+{% endblock %}
