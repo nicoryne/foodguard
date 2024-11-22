@@ -1,9 +1,4 @@
-<form
-  id="form-add-ingredient"
-  action="{% url 'shoppinglist:add_ingredient_to_buy' list_id=1 %}"
-  method="POST"
-  class="hide"
->
+<form id="form-add-ingredient" action="{% url 'shoppinglist:add_ingredient_to_buy'  %}" method="POST" class="hide">
   <header>
     <h3>Add Ingredient</h3>
   </header>
@@ -107,7 +102,7 @@
         return;
       }
 
-      fetch("{% url 'shoppinglist:delete_ingredient_to_buy' list_id=1 %}", {
+      fetch("{% url 'shoppinglist:delete_ingredient_to_buy'  %}", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

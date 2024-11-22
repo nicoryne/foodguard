@@ -14,7 +14,7 @@ def log_user_creation(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def create_shopping_list(sender, instance, created, **kwargs):
     if created:
-        ShoppingList.objects.create(user=instance, capacity=10)
+        ShoppingList.objects.create(user=instance)
 
 @receiver(pre_delete, sender=User)
 def log_user_deletion(sender, instance, **kwargs):

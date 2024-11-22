@@ -4,11 +4,14 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from apps.ingredient.models import Ingredient
+from apps.users.models import User
 from apps.shoppinglist.forms import IngredientToBuyForm
 from .models import IngredientToBuy, ShoppingList
 
-def shopping_list_view(request, list_id):
-    shopping_list = get_object_or_404(ShoppingList, shopping_list_id=list_id)
+def shopping_list_view(request):
+    print(request.user.email);
+    userr = get_object_or_404(User, email=request.user.email);
+    shopping_list = get_object_or_404(ShoppingList, user=userr)
     ingredients_to_buy = shopping_list.ingredients_to_buy.all()
     ingredients = Ingredient.objects.all();
 
@@ -26,19 +29,24 @@ def shopping_list_view(request, list_id):
     }
     return render(request, 'shopping_list.html', context)
 
-def finish_list(request, list_id):
-    shopping_list = get_object_or_404(ShoppingList, shopping_list_id=list_id)
+def finish_list(request):
+    userr = get_object_or_404(User, email=request.user.email);
+    shopping_list = get_object_or_404(ShoppingList, user=userr)
     
     if request.method != "POST":
-        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail'))
     
     shopping_list.clear_ingredients()
     shopping_list.save()
-    return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail')))
     
-def add_ingredient_to_buy(request, list_id):
+def add_ingredient_to_buy(request):
+    userr = get_object_or_404(User, email=request.user.email);
+    shopping_list = get_object_or_404(ShoppingList, user=userr)
+    list_id = shopping_list.get('list_id')
+    
     if request.method != "POST":
-        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail'))
     
     form = IngredientToBuyForm(request.POST)
     
@@ -59,8 +67,9 @@ def add_ingredient_to_buy(request, list_id):
 
         return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
 
-def delete_ingredient_to_buy(request, list_id):
-    shopping_list = get_object_or_404(ShoppingList, shopping_list_id=list_id)
+def delete_ingredient_to_buy(request):
+    userr = get_object_or_404(User, email=request.user.email);
+    shopping_list = get_object_or_404(ShoppingList, user=userr)
 
     if request.method == "POST":
         data = json.loads(request.body)
@@ -76,31 +85,33 @@ def delete_ingredient_to_buy(request, list_id):
         return JsonResponse({'success': True})
     return JsonResponse({'success': False})
  
-def toggle_to_cart(request, list_id, ingredient_id):    
-    shopping_list = get_object_or_404(ShoppingList, shopping_list_id=list_id)
+def toggle_to_cart(request, ingredient_id):    
+    userr = get_object_or_404(User, email=request.user.email);
+    shopping_list = get_object_or_404(ShoppingList, user=userr)
     
     if request.method != "POST":
-        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail', user=request.user))
     
     ingredient = shopping_list.ingredients_to_buy.get(ingredient_id=ingredient_id)
 
     if not ingredient:
-        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail'))
     
     ingredient.in_cart = not ingredient.in_cart
     ingredient.save()
-    return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail')))
 
-def quantity_change(request, list_id, ingredient_id, is_add):
-    shopping_list = get_object_or_404(ShoppingList, shopping_list_id=list_id)
+def quantity_change(request, ingredient_id, is_add):
+    userr = get_object_or_404(User, email=request.user.email);
+    shopping_list = get_object_or_404(ShoppingList, user=userr)
     
     if request.method != "POST":
-        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail'))
     
     ingredient = shopping_list.ingredients_to_buy.get(ingredient_id=ingredient_id)
     
     if not ingredient:
-        return HttpResponseRedirect(reverse('shoppinglist:list_detail', kwargs={'list_id': list_id}))
+        return HttpResponseRedirect(reverse('shoppinglist:list_detail'))
     
     if is_add == 1:
         ingredient.quantity += 1;
@@ -112,7 +123,7 @@ def quantity_change(request, list_id, ingredient_id, is_add):
     else:
         ingredient.save()
 
-    return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail')))
         
 
 
