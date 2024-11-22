@@ -43,7 +43,7 @@ def finish_list(request):
 def add_ingredient_to_buy(request):
     userr = get_object_or_404(User, email=request.user.email);
     shopping_list = get_object_or_404(ShoppingList, user=userr)
-    list_id = shopping_list.get('list_id')
+    list_id = shopping_list.shopping_list_id;
     
     if request.method != "POST":
         return HttpResponseRedirect(reverse('shoppinglist:list_detail'))
@@ -65,7 +65,7 @@ def add_ingredient_to_buy(request):
         else:
             ingredient_to_buy.save()
 
-        return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail', kwargs={'list_id': list_id})))
+        return HttpResponseRedirect(request.META.get("HTTP_REFERER", reverse('shoppinglist:list_detail')))
 
 def delete_ingredient_to_buy(request):
     userr = get_object_or_404(User, email=request.user.email);
