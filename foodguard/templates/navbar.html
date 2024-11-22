@@ -11,6 +11,7 @@
         <li><a href="{% url 'shoppinglist:list_detail' list_id=1 %}">Shopping List</a></li>
       </ul>
     </nav>
-    <button class="btn-primary">Login</button>
+    <a href="{% url 'login' %}" class="btn-primary">Login</a>
+    <a href="{% url 'user-create' %}" class="btn-secondary">Sign Up</a>
   </div>
 </header>

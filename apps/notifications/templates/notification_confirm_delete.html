@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="notification">
+    <div class="container">
+        <h2>Delete Notification</h2>
+        <p>Are you sure you want to delete the notification titled "{{ notification.title }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="{% url 'notification-detail' notification.pk %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

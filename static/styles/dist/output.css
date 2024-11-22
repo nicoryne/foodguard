@@ -711,3 +711,586 @@ table {
   border-radius: 4px;
   height: 32px;
 }
+
+
+#user-list .header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#user-list h2 {
+font-size: 28px;
+color: #333;
+}
+
+#user-list .btn-create {
+padding: 10px 20px;
+background-color: #aac6a5; 
+color: white;
+border-radius: 4px;
+text-decoration: none;
+transition: background-color 0.3s;
+}
+
+#user-list .btn-create:hover {
+background-color: darken(#aac6a5, 10%);
+}
+
+#user-list .table-wrapper {
+overflow-x: auto;
+border-radius: 8px;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#user-list table {
+width: 100%;
+border-collapse: collapse;
+}
+
+#user-list thead {
+background-color: #e47171;
+color: white;
+}
+
+#user-list th {
+padding: 12px;
+text-align: left;
+font-weight: bold;
+}
+
+#user-list tbody tr:nth-child(even) {
+background-color: lighten(#7c7b7b, 10%); 
+}
+
+#user-list tbody tr:hover {
+background-color: f3ef9b; 
+}
+
+#user-list tbody td {
+padding: 12px;
+text-align: left;
+border-bottom: 1px solid #7c7b7b;
+}
+
+#user-list tbody td.empty-row {
+text-align: center;
+font-style: italic;
+color: #7c7b7b;
+}        
+
+#user-list .actions {
+display: flex;
+gap: 10px;
+}
+
+#user-list .btn-action {
+padding: 6px 10px;
+background-color: #e47171; 
+color: white;
+border-radius: 4px;
+text-decoration: none;
+transition: background-color 0.3s;
+}
+
+#user-list .btn-action:hover {
+background-color: darken(#e88686, 10%);
+}
+
+#user-list .btn-delete {
+background-color: #aac6a5; 
+}
+
+#user-list .btn-delete:hover {
+background-color: darken(#aac6a5, 10%);
+}
+
+#user-details .container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+#user-details h2 {
+  font-size: 28px;
+  color:  #e88686; 
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#user-details .user-info {
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #7c7b7b;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+#user-details .user-info p {
+  font-size: 16px;
+  color: #2d2d2d;
+  margin: 10px 0;  
+}
+
+#user-details .user-info p strong {
+  color:  #e88686;
+}
+
+#user-details .user-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#user-details .user-actions .btn-actions {
+  display: inline-block;
+  margin: 5px 10px;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#user-details .user-actions .btn-actions .btn-update {
+  background-color: #aac6a5;
+}
+
+#user-details .user-actions .btn-actions .btn-update:hover {
+  background-color: darken(#aac6a5, 10%);
+}
+
+#user-details .user-actions .btn-actions .btn-delete {
+  background-color: #e88686;
+}
+
+#user-details .user-actions .btn-actions .btn-delete:hover {
+  background-color: darken(#e88686, 10%);
+}
+
+#user-details .user-actions .btn-actions .btn-back {
+  background-color: lighten(#2d2d2d, 20%);
+}
+
+#user-details .user-actions .btn-actions .btn-back:hover {
+  background-color: lighten(#2d2d2d, 10%);
+}
+
+#user-update .container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+#user-update h2 {
+  font-size: 28px;
+  color: #e47171; 
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#user-update form .form-group {
+  margin-bottom: 20px;
+}
+
+#user-update form .form-group label {
+  display: block;
+  font-size: 16px;
+  color: #7c7b7b;
+  margin-bottom: 8px;
+}
+
+#user-update form .form-group input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #7c7b7b;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+#user-update form .form-group input, select, textarea:focus {
+  border-color: #e47171;
+  outline: none;
+}
+
+#user-update form .btn-action {
+  display: inline-block;
+  margin: 5px 10px 0 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+#user-update form .btn-action .btn-update {
+  background-color: #e47171;
+}
+
+#user-update form .btn-action .btn-update:hover {
+  background-color: darken(#e47171, 10%);
+}
+
+#user-update form .btn-action .btn-cancel {
+  background-color: #e47171;
+}
+
+#user-update form .btn-action .btn-cancel:hover {
+  background-color: darken(#e47171, 10%);
+}
+
+#user-delete .container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+#user-delete h2 {
+  font-size: 28px;
+  color: #e47171;
+  margin-bottom: 20px;
+}
+
+#user-delete .confirmation-text {
+  font-size: 18px;
+  color: #2d2d2d;
+  margin-bottom: 30px;
+}
+
+#user-delete .confirmation-text strong {
+  color: #e47171;
+}
+
+#user-delete .action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+#user-delete .action-buttons .btn-action {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+#user-delete .action-buttons .btn-action .btn-delete {
+  background-color: #e47171;
+}
+
+#user-delete .action-buttons .btn-action .btn-delete:hover {
+  background-color: darken(#e47171, 10%);
+}
+
+#user-delete .action-buttons .btn-action .btn-cancel {
+  background-color: #aac6a5;
+}
+
+#user-delete .action-buttons .btn-action .btn-cancel:hover {
+  background-color: darken(#aac6a5, 10%);
+}
+
+#login .container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+#login .form-container h2 {
+  font-size: 28px;
+  color: #e88686; 
+  margin-bottom: 20px;
+} 
+
+#login .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+#login .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+#login .login-form .form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+#login .login-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #2d2d2d;
+}
+
+#login .login-form input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #aac6a5;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+#login .login-form input:focus {
+  border-color: #e47171;
+  outline: none;
+}
+
+#login .btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+  background-color: #e47171;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#login .btn:hover{
+  background-color: darken(#e47171, 10%);
+}
+
+#login .register-link {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+#login .register-link a {
+  color:  #e47171;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#login .register-link a:hover {
+  text-decoration: underline;
+}
+
+#signup .container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: white; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+#signup h1 {
+  font-size: 28px;
+  color:  #e47171; 
+  margin-bottom: 20px;
+}
+
+#signup .signup-form .form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+#signup .signup-form .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #2d2d2d; 
+}
+
+#signup .signup-form .form-group input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid  #7c7b7b; 
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+#signup .signup-form .form-group input:focus {
+  border-color:  #e47171;
+  outline: none;
+}
+
+#signup .btn-submit {
+  background-color: #e47171;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  margin-top: 15px;
+}
+
+#signup .btn-submit:hover {
+  background-color: darken( #e47171, 10%);
+}
+
+#signup .btn-cancel {
+  display: inline-block;
+  margin-top: 15px;
+  color:  #aac6a5; 
+  font-size: 16px;
+  text-decoration: none;
+}
+
+#signup .btn-cancel:hover {
+  text-decoration: underline;
+}
+
+#notification .container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff; /* Body background */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#notification h2 {
+  text-align: center;
+  color: #2d2d2d; /* Body text color */
+}
+
+#notification .notification-list {
+  margin-top: 20px;
+}
+
+#notification .notification-item {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff; /* Body background */
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#notification .notification-item h3 {
+  color: #e47171; /* Coral */
+  margin-bottom: 5px;
+}
+
+#notification .notification-item p {
+  color: #2d2d2d; /* Dark Gray */
+  margin-bottom: 10px;
+}
+
+#notification .notification-item small {
+  display: block;
+  color: #7c7b7b; /* Light gray */
+  margin-bottom: 10px;
+}
+
+#notification .notification-actions a {
+  margin-right: 10px;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+#notification .notification-actions a.btn-primary {
+  background-color: #e47171; /* Coral */
+}
+
+#notification .notification-actions a.btn-primary:hover {
+  background-color: #d15d5d; /* Darker coral */
+}
+
+#notification .notification-actions a.btn-secondary {
+  background-color: #aac6a5; /* Sage Green */
+}
+
+#notification .notification-actions a.btn-secondary:hover {
+  background-color: #91b38e; /* Darker sage */
+}
+
+#notification .notification-actions a.btn-danger {
+  background-color: #dc3545; /* Red for delete */
+}
+
+#notification .notification-actions a.btn-danger:hover {
+  background-color: #c82333;
+}
+
+#notification .btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#notification .btn-primary {
+  background-color: #e47171; /* Coral */
+}
+
+#notification .btn-primary:hover {
+  background-color: #d15d5d; /* Darker coral */
+}
+
+#notification .btn-success {
+  background-color: #f4c49c; /* Peach */
+}
+
+#notification .btn-success:hover {
+  background-color: #e1b08a; /* Darker peach */
+}
+
+#notification .btn-danger {
+  background-color: #dc3545; /* Red for delete */
+}
+
+#notification .btn-danger:hover {
+  background-color: #c82333;
+}
+
+#notification .btn-secondary {
+  background-color: #aac6a5; /* Sage Green */
+}
+
+#notification .btn-secondary:hover {
+  background-color: #91b38e; /* Darker sage */
+}
+
+#notification .btn-back {
+  background-color: #f3ef9b; /* Lemon */
+  color: #2d2d2d; /* Dark Gray */
+}
+
+#notification .btn-back:hover {
+  background-color: #f0e07a; /* Darker lemon */
+}

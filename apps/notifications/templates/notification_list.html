@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="notification">
+    <div class="container">
+        <h2>Notifications</h2>
+        <div class="notification-list">
+            {% for notification in notifications %}
+                <div class="notification-item">
+                    <h3>{{ notification.title }}</h3>
+                    <p>{{ notification.description }}</p>
+                    <small>Created at: {{ notification.created_at }}</small>
+                    <div class="notification-actions">
+                        <a href="{% url 'notification-detail' notification.pk %}" class="btn btn-primary">View</a>
+                        <a href="{% url 'notification-update' notification.pk %}" class="btn btn-secondary">Edit</a>
+                        <a href="{% url 'notification-delete' notification.pk %}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No notifications found.</p>
+            {% endfor %}
+        </div>
+        <a href="{% url 'notification-create' %}" class="btn btn-success">Create New Notification</a>
+    </div>
+</div>
+{% endblock %}
