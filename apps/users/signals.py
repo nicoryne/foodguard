@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from .models import User
 from django.conf import settings
 from ..shoppinglist.models import ShoppingList
+from ..inventory.models import Inventory
 
 @receiver(post_save, sender=User)
 def log_user_creation(sender, instance, created, **kwargs):
@@ -24,6 +25,11 @@ def log_user_creation(sender, instance, created, **kwargs):
 def create_shopping_list(sender, instance, created, **kwargs):
     if created:
         ShoppingList.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def create_inventory(sender, instance, created, **kwargs):
+    if created:
+        Inventory.objects.create(user=instance, ingredient_quantity=0)
 
 @receiver(pre_delete, sender=User)
 def log_user_deletion(sender, instance, **kwargs):

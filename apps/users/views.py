@@ -1,20 +1,30 @@
 from django.contrib.auth.hashers import make_password
+from django.http import HttpResponseRedirect
 from .models import User
+
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 
-class CustomLoginView(auth_views.LoginView):
-    template_name = 'login.html'
+# class CustomLoginView(requauthest):
+#     template_name = 'login.html'
 
 
-    def form_invalid(self, form):
-        messages.error(self.request, "Invalid username or password.")
-        return super().form_invalid(form)
+#     def form_invalid(self, form):
+#         messages.error(self.request, "Invalid username or password.")
+#         return super().form_invalid(form)
+
+def user_login(request, email, password):
+
+
+    userr = get_object_or_404(User, email=email, password=email)
+
+    print(userr)
     
+
 # User List View
 class UserListView(ListView):
     model = User
