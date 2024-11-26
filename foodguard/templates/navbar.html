@@ -8,9 +8,12 @@
         <li><a href="/">Home</a></li>
         <li><a href="/ingredient">My Ingredients</a></li>
         <li><a href="/recipe_list">Recipe Book</a></li>
-        <li><a href="{% url 'shoppinglist:list_detail' list_id=1 %}">Shopping List</a></li>
+        <li><a href="{% url 'shoppinglist:list_detail' %}">Shopping List</a></li>
       </ul>
     </nav>
-    <button class="btn-primary">Login</button>
+   <div>
+    <a href="{% url 'login' %}" class="btn-primary">Login</a>
+    <a href="{% url 'user-create' %}" class="btn-secondary">Sign Up</a>
+   </div>
   </div>
 </header>

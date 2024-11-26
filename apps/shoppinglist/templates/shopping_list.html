@@ -63,7 +63,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
           </button>
-          <form id="delete-ingredients-form" class="container-checkbox hide" action="{% url 'shoppinglist:delete_ingredient_to_buy' list_id=1 %}" method="POST">
+          <form id="delete-ingredients-form" class="container-checkbox hide" action="{% url 'shoppinglist:delete_ingredient_to_buy'  %}" method="POST">
             {% csrf_token %}
            <button id="btn-confirm-del" type="submit">
             <svg id="icon-checkmark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-sm">
@@ -95,7 +95,7 @@
               <td>{{ ingredient.ingredient.name }}</td>
               <td>{{ ingredient.quantity }}</td>
               <td class="container-action-btn">
-                <form action="{% url 'shoppinglist:quantity_change' list_id=1 ingredient_id=ingredient.ingredient_id is_add=0 %}" method="POST">
+                <form action="{% url 'shoppinglist:quantity_change'  ingredient_id=ingredient.ingredient_id is_add=0 %}" method="POST">
                 {% csrf_token %}
                 <button id="reduce-qty-btn">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-xs">
@@ -105,7 +105,7 @@
               </form>
               </td>
               <td class="container-action-btn">
-                <form action="{% url 'shoppinglist:quantity_change' list_id=1 ingredient_id=ingredient.ingredient_id is_add=1 %}" method="POST">
+                <form action="{% url 'shoppinglist:quantity_change'  ingredient_id=ingredient.ingredient_id is_add=1 %}" method="POST">
                   {% csrf_token %}
                   <button id="add-qty-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-xs">
@@ -115,7 +115,7 @@
                 </form>
               </td>
               <td class="container-action-btn">
-                <form action="{% url 'shoppinglist:toggle_to_cart' list_id=1 ingredient_id=ingredient.ingredient_id %}" method="POST">
+                <form action="{% url 'shoppinglist:toggle_to_cart'  ingredient_id=ingredient.ingredient_id %}" method="POST">
                 {% csrf_token %}
                 <button id="btn-tocart">
                   <svg
@@ -190,7 +190,7 @@
         </div>
       </div>
 
-      <form action="{% url 'shoppinglist:finish_list' list_id=1 %}" method="POST">
+      <form action="{% url 'shoppinglist:finish_list'  %}" method="POST">
         {% csrf_token %}
         <button type="submit" class="btn-inverse-primary" id="btn-finish">Finish Shopping</button>
       </form>

@@ -6,43 +6,36 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         
-        <!-- Ingredient Name -->
         <div class="form-group">
             <label for="id_name">Ingredient Name</label>
             {{ form.name }}
         </div>
         
-        <!-- Quantity -->
         <div class="form-group">
             <label for="id_quantity">Quantity</label>
             {{ form.quantity }}
         </div>
         
-        <!-- Category -->
         <div class="form-group">
             <label for="id_category">Category</label>
             {{ form.category }}
         </div>
         
-        <!-- Upload Ingredient Image -->
         <div class="form-group">
             <label for="id_image">Upload Ingredient Image</label>
             {{ form.image }}
         </div>
         
-        <!-- Date Purchased -->
         <div class="form-group">
             <label for="id_date_purchased">Date Purchased</label>
             {{ form.date_purchased }}
         </div>
         
-        <!-- Expiry Date -->
         <div class="form-group">
             <label for="id_expiry_date">Expiry Date</label>
             {{ form.expiry_date }}
         </div>
         
-        <!-- Submit Button -->
         <button type="submit" class="btn btn-sub">Save Changes</button>
     </form>
 </div>
