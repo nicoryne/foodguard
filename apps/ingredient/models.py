@@ -15,8 +15,3 @@ class Ingredient(models.Model):
     image = models.ImageField(upload_to='apps/ingredient/media/', null=True, blank=True)
     date_purchased = models.DateField(null=True, blank=True)  # Add this field for the purchase date
     expiry_date = models.DateField(null=True, blank=True)     # Add this field for expiry date
-    
-
-    def __str__(self):
-        return f"Ingredient ID: {self.ingredient_id}\nName: {self.name}\nCategory: {self.category}\nQuantity: {self.quantity}\nDate: {self.date_purchased}"
-    # ADD MORE IF YOU NEED TO VIEW MORE IN THE SHELL CONSOLE.

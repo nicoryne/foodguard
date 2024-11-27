@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 from apps.ingredient.models import Ingredient
-from ..users.models import User
+
 
 # Classes within inventory/models.py
 #   1. Inventory
@@ -11,17 +12,9 @@ from ..users.models import User
 # Inventory
 class Inventory(models.Model):
     inventory_id = models.AutoField(primary_key=True)
-    ingredient_quantity = models.IntegerField()
+    ingredient_quantity = models.IntegerField(default=0)
     updated_at = models.DateTimeField(auto_now=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='inventory')
-    
-    def __str__(self):
-        return (
-            f"Inventory ID: {self.inventory_id}\n"
-            f"User: {self.user.fname} {self.user.lname}\n"
-            f"Ingredient Quantity: {self.ingredient_quantity}\n"
-            f"Last Updated: {self.updated_at}"
-        )
     
     
 # Inventory-Ingredient Ownership
@@ -42,12 +35,3 @@ class InventoryIngredientOwnership(models.Model):
             return 0.0
 
         return round(remaining_shelf_life / total_shelf_life, 4) if total_shelf_life > 0 else 0.0
-    
-    def __str__(self):
-        return (
-            f"Ingredient: {self.ingredient.name}\n"
-            f"Quantity: {self.quantity}\n"
-            f"Purchase Date: {self.purchase_date}\n"
-            f"Expiry Date: {self.expiry_date}\n"
-            f"Freshness: {self.freshness:.4f}"
-        )

@@ -6,7 +6,7 @@ from apps.notifications.models import Notification
 @receiver(post_save, sender=Inventory)
 def log_inventory_creation(sender, instance, created, **kwargs):
     if created:
-        print(f"New inventory created for user: {instance.user.fname} {instance.user.lname}")
+        print(f"New inventory created for user: {instance.user.username}")
         
         Notification.objects.create(
             user=instance.user,
@@ -14,11 +14,11 @@ def log_inventory_creation(sender, instance, created, **kwargs):
             description=f"Your inventory has been created with ID: {instance.inventory_id}."
         )
     else:
-        print(f"Inventory updated for user: {instance.user.fname} {instance.user.lname}")
+        print(f"Inventory updated for user: {instance.user.username}")
 
 @receiver(pre_delete, sender=Inventory)
 def log_inventory_deletion(sender, instance, **kwargs):
-    print(f"Inventory deleted for user: {instance.user.fname} {instance.user.lname}")
+    print(f"Inventory deleted for user: {instance.user.username}")
     
     Notification.objects.create(
         user=instance.user,

@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Authentication definition
+LOGIN_URL = "/accounts/login"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Application definition
 
@@ -45,7 +49,7 @@ INSTALLED_APPS = [
     'apps.notifications.apps.NotificationsConfig',
     'apps.recipes.apps.RecipesConfig',
     'apps.shoppinglist.apps.ShoppingListConfig',
-    'apps.users.apps.UsersConfig',
+    'apps.accounts.apps.AccountConfig',
     'django_sass'
 ]
 
@@ -132,14 +136,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # Adjust this path according to your project structure
 ]
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_URL = '/users/login/'
-LOGIN_REDIRECT_URL = '/ingredient/'
-LOGOUT_REDIRECT_URL = '/users/login/'
 
 
 # Media File Passing

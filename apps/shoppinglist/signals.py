@@ -6,13 +6,13 @@ from .models import ShoppingList, IngredientToBuy
 @receiver(post_save, sender=ShoppingList)
 def log_shopping_list_creation(sender, instance, created, **kwargs):
     if created:
-        print(f"New shopping list created for user: {instance.user.fname} {instance.user.lname}")
+        print(f"New shopping list created for user: {instance.user.username}")
     else:
-        print(f"Shopping list updated for user: {instance.user.fname} {instance.user.lname}")
+        print(f"Shopping list updated for user: {instance.user.username}")
 
 @receiver(pre_delete, sender=ShoppingList)
 def log_shopping_list_deletion(sender, instance, **kwargs):
-    print(f"Shopping list deleted for user: {instance.user.fname} {instance.user.lname}")
+    print(f"Shopping list deleted for user: {instance.user.username}")
 
 @receiver(post_save, sender=IngredientToBuy)
 def log_ingredient_to_buy_creation(sender, instance, created, **kwargs):

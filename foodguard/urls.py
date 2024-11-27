@@ -28,8 +28,8 @@ urlpatterns = [
     # Shopping List Path
     path('shoppinglist/', include('apps.shoppinglist.urls')),
     
-    # Users Path
-    path('users/', include('apps.users.urls')), 
+    # Account path
+    path('accounts/', include('apps.accounts.urls')), 
 ]
 
 # Serve media files during development

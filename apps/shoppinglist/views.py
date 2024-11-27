@@ -4,12 +4,11 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from apps.ingredient.models import Ingredient
-from apps.users.models import User
+from django.contrib.auth.models import User
 from apps.shoppinglist.forms import IngredientToBuyForm
 from .models import IngredientToBuy, ShoppingList
 
 def shopping_list_view(request):
-    print(request.user.email);
     userr = get_object_or_404(User, email=request.user.email);
     shopping_list = get_object_or_404(ShoppingList, user=userr)
     ingredients_to_buy = shopping_list.ingredients_to_buy.all()
@@ -27,6 +26,7 @@ def shopping_list_view(request):
         'items_in_cart': items_in_cart,
         'items_left': items_left,
     }
+    
     return render(request, 'shopping_list.html', context)
 
 def finish_list(request):
@@ -71,19 +71,21 @@ def delete_ingredient_to_buy(request):
     userr = get_object_or_404(User, email=request.user.email);
     shopping_list = get_object_or_404(ShoppingList, user=userr)
 
-    if request.method == "POST":
-        data = json.loads(request.body)
-        selected_ingredients_ids = data.get('selected_ingredients', [])
+    if request.method != "POST":
+        return JsonResponse({'success': False})
+    
+    data = json.loads(request.body)
+    selected_ingredients_ids = data.get('selected_ingredients', [])
 
-        if not selected_ingredients_ids:
-            return JsonResponse({'success': False})
+    if not selected_ingredients_ids:
+        return JsonResponse({'success': False})
 
-        for ingredient_id in selected_ingredients_ids:
-            ingredient = shopping_list.ingredients_to_buy.get(ingredient_id=ingredient_id)
-            ingredient.delete()
+    for ingredient_id in selected_ingredients_ids:
+        ingredient = shopping_list.ingredients_to_buy.get(ingredient_id=ingredient_id)
+        ingredient.delete()
 
-        return JsonResponse({'success': True})
-    return JsonResponse({'success': False})
+    return JsonResponse({'success': True})
+    
  
 def toggle_to_cart(request, ingredient_id):    
     userr = get_object_or_404(User, email=request.user.email);
