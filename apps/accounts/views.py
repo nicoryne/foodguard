@@ -35,5 +35,9 @@ def register(request):
 def logout(request):
     auth_logout(request)
     return redirect('accounts:login')
+
+
+def profile(request):
+    return render(request, 'profile.html');
     
     

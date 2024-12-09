@@ -9,18 +9,14 @@
       <header>
         <h1>Maximize savings, minimize waste—your kitchen's ultimate companion.</h1>
         <p>Want a break from the perishable goods? Try FoodGuard.</p>
-        <button class="btn-primary">Try FoodGuard</button>
+        <div>
+          <a href={% url 'accounts:register' %}>Try FoodGuard</a>
+        </div>
       </header>
 
       <figure>
         <img src="{% static 'img/img_hero.png' %}" />
       </figure>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="wrapper">
-      <header></header>
     </div>
   </section>
 </main>

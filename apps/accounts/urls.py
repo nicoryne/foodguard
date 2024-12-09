@@ -9,5 +9,6 @@ urlpatterns = [
         template_name='login.html',
     ), name='login'),
     path('logout/', views.logout, name='logout'),
-    path('register/', views.register, name='register')
+    path('register/', views.register, name='register'),
+    path('profile/', views.profile, name='profile')
 ]
