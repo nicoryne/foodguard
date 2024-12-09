@@ -29,8 +29,8 @@
             </div>
     
             <div style="position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); display: none; gap: 10px; z-index: 4;" class="actions">
-                <a href="{% url 'ingredient-update' ingredient.pk %}" style="background-color: #ffcc80; padding: 8px 12px; border-radius: 4px; text-decoration: none; color: #333; font-size: 14px;">Update</a>
-                <a href="{% url 'ingredient-delete' ingredient.pk %}" style="background-color: #ff6b6b; padding: 8px 12px; border-radius: 4px; text-decoration: none; color: white; font-size: 14px;">Delete</a>
+                <a href="{% url 'ingredient:ingredient-update' ingredient.pk %}" style="background-color: #ffcc80; padding: 8px 12px; border-radius: 4px; text-decoration: none; color: #333; font-size: 14px;">Update</a>
+                <a href="{% url 'ingredient:ingredient-delete' ingredient.pk %}" style="background-color: #ff6b6b; padding: 8px 12px; border-radius: 4px; text-decoration: none; color: white; font-size: 14px;">Delete</a>
             </div>
         </div>
         {% endfor %}
@@ -46,8 +46,7 @@
     <div style="display: flex; overflow-x: auto; gap: 20px; margin-bottom: 30px; padding: 10px 20px; width: 100%;">
         {% for ingredient in urgent_ingredients %}
         <div style="flex: 0 0 250px; height: 168px; background-color: #d0e4ff; border-radius: 8px; text-align: center; position: relative; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.2s; background-image: url('{% if ingredient.image %}{{ ingredient.image.url }}{% else %}/static/img/img_hero.png{% endif %}'); background-size: cover; background-position: center;" data-category="{{ ingredient.category }}">
-            <div style="margin-top: 20px; z-index: 2; position: relative;">
-            </div>
+            <div style="margin-top: 20px; z-index: 2; position: relative;"></div>
 
             <div style="background-color: #fff; padding: 10px; position: absolute; bottom: 0; width: 100%; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); z-index: 3;">
                 <p style="font-size: 14px; color: #202020; margin: 5px 0;"><b>Name:</b> {{ ingredient.name }}</p>
@@ -55,14 +54,13 @@
             </div>
 
             <div style="position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); display: none; gap: 10px; z-index: 4;" class="actions">
-                <a href="{% url 'ingredient-update' ingredient.pk %}" style="background-color: #ffcc80; padding: 8px 12px; border-radius: 4px; text-decoration: none; color: #333; font-size: 14px;">Update</a>
-                <a href="{% url 'ingredient-delete' ingredient.pk %}" style="background-color: #aff5a2; padding: 8px 12px; border-radius: 4px; text-decoration: none; color: #333; font-size: 14px;">Consumed</a>
+                <a href="{% url 'ingredient:ingredient-update' ingredient.pk %}" style="background-color: #ffcc80; padding: 8px 12px; border-radius: 4px; text-decoration: none; color: #333; font-size: 14px;">Update</a>
+                <a href="{% url 'ingredient:ingredient-delete' ingredient.pk %}" style="background-color: #ff6b6b; padding: 8px 12px; border-radius: 4px; text-decoration: none; color: white; font-size: 14px;">Delete</a>
             </div>
-
         </div>
         {% empty %}
-        <div style="text-align: center; width: 100%; color: #666; font-size: 16px;">
-            <p>No urgent items.</p>
+        <div style="flex: 0 0 250px; height: 168px; background-color: #d0e4ff; border-radius: 8px; text-align: center; position: relative; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
+            <p style="color: #666; font-size: 16px; margin-top: 60px;">No urgent items.</p>
         </div>
         {% endfor %}
     </div>
@@ -75,10 +73,11 @@
 
         items.forEach(item => {
             const itemCategory = item.getAttribute("data-category");
+
             if (selectedCategory === "all" || itemCategory === selectedCategory) {
-                item.style.display = "block";
+                item.style.display = "block"; 
             } else {
-                item.style.display = "none";
+                item.style.display = "none"; 
             }
         });
     }
