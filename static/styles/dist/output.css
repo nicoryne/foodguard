@@ -744,6 +744,10 @@ table {
   stroke: #e47171;
 }
 
+#shopping-list #icon-mic {
+  stroke: #e47171;
+}
+
 #shopping-list #icon-add,
 #shopping-list #icon-checkmark {
   fill: white;
