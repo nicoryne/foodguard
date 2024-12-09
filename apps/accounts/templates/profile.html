@@ -1,5 +1,39 @@
-{% extends "base.html" %} {% block content %}
-<main>
-  <p>Test</p>
+{% extends "base.html" %} {% load static %} {% block content %}
+<main id="profile-page">
+  <div class="wrapper">
+    <header>
+      <img class="icon-sm" src="{% static 'img/svg/user.svg' %}" alt="User Icon" />
+      <h1>{{ profile.user }}'s Profile</h1>
+    </header>
+    <section class="details">
+      <h2>Account Details</h2>
+      <form action="{% url 'accounts:edit_profile' %}" method="POST">
+        {% csrf_token %}
+        <div>
+          <label for="first_name">First Name</label>
+          <input type="text" id="first_name" name="first_name" value="{{ profile.user.first_name }}" />
+        </div>
+        <div>
+          <label for="last_name">Last Name</label>
+          <input type="text" id="last_name" name="last_name" value="{{ profile.user.last_name }}" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" value="{{ profile.user.email }}" />
+        </div>
+        <div>
+          <label for="phone_number">Phone Number</label>
+          <input type="tel" id="phone_number" name="phone_number" value="{{ profile.phone_number }}" />
+        </div>
+        <div>
+          <label for="birthdate">Birthdate</label>
+          <input type="date" id="birthdate" name="birthdate" value="{{ profile.date_of_birth|date:'Y-m-d' }}" />
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </section>
+  </div>
 </main>
 {% endblock %}

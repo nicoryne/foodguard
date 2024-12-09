@@ -3,7 +3,13 @@
 <header id="navigation-header">
   <div class="wrapper">
     <nav>
+      {% if user.is_authenticated %}
       <img class="icon-sm" src="{% static 'img/logo.svg' %}" alt="Foodguard Logo" />
+      {% elif not user.is_authenticated %}
+      <a href="/">
+        <img class="icon-sm" src="{% static 'img/logo.svg' %}" alt="Foodguard Logo" />
+      </a>
+      {% endif %}
       <ul>
         {% if user.is_authenticated %}
         <li><a href="/ingredient">My Ingredients</a></li>
@@ -14,14 +20,34 @@
     </nav>
     <div>
       {% if not user.is_authenticated %}
-      <a href={% url 'accounts:login' %} class="btn-primary">Login</a>
-      {% endif %}
-
-      {% if user.is_authenticated %}
-      <a href={% url 'accounts:profile' %}> 
-        <img class="icon-sm" src="{% static 'img/logo.svg' %}" alt="Profile" />
-      </a>
+      <a href="{% url 'accounts:login' %}" class="btn-primary">Login</a>
+      {% endif %} {% if user.is_authenticated %}
+      <div class="profile-dropdown">
+        <button class="profile-btn">
+          <img class="icon-xs" src="{% static 'img/svg/user.svg' %}" alt="User Icon" />
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'accounts:profile' %}">View Profile</a></li>
+          <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+        </ul>
+      </div>
       {% endif %}
     </div>
   </div>
 </header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const profileBtn = document.querySelector(".profile-btn");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+
+    profileBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle("show");
+    });
+
+    document.addEventListener("click", () => {
+      dropdownMenu.classList.remove("show");
+    });
+  });
+</script>

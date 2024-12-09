@@ -1,5 +1,8 @@
 from django.contrib.auth import logout as auth_logout
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from apps.accounts.forms import RegisterForm
 from .models import Profile
@@ -38,6 +41,22 @@ def logout(request):
 
 
 def profile(request):
-    return render(request, 'profile.html');
+    userr = get_object_or_404(User, email=request.user.email);
+    profile = Profile.objects.get(user=userr)
+    return render(request, 'profile.html', { "profile" : profile });
     
-    
+@login_required
+def edit_profile(request):
+    profile = request.user.profile 
+    if request.method == "POST":
+        profile.user.first_name = request.POST.get('first_name')
+        profile.user.last_name = request.POST.get('last_name')
+        profile.user.email = request.POST.get('email')
+        profile.phone_number = request.POST.get('phone_number')
+        profile.date_of_birth = request.POST.get('birthdate')
+        profile.user.save()
+        profile.save()
+        messages.success(request, "Profile updated successfully!")
+
+        return redirect('accounts:profile')
+    return render(request, 'accounts:profile', {'profile': profile})
