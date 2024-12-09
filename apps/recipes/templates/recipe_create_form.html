@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="__create-recipe" style="padding: 20px;">
+  <div class="container" style="max-width: 600px; margin: auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h2 style="font-size: 24px; color: #333; margin-bottom: 20px;">Create New Recipe</h2>
+    <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 15px;">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" style="padding: 10px; background-color: #27ae60; color: white; border: none; border-radius: 5px; font-size: 16px;">Save Recipe</button>
+      <a href="{% url 'admin-recipe-list' %}" style="text-align: center; text-decoration: none; color: #666; margin-top: 10px;">Cancel</a>
+    </form>
+  </div>
+</main>
+{% endblock content %}

@@ -11,11 +11,14 @@ from .views import (
     RecipeUserRatingListView,
     RecipeUserRatingCreate,
     RecipeIngredientListView,
-    RecipeIngredientCreate
+    RecipeIngredientCreate,
+    ToggleFavoriteView,
+    AdminRecipeListView,
 )
 
 urlpatterns = [
     path('', RecipeListView.as_view(), name='recipe-list'),
+    path('admin/', AdminRecipeListView.as_view(), name='admin-recipe-list'),
     path('recipe/<int:pk>/', RecipeDetailView.as_view(), name='recipe-detail'),
     path('recipe/new/', RecipeCreateView.as_view(), name='recipe-create'),
     path('recipe/<int:pk>/edit/', RecipeUpdateView.as_view(), name='recipe-update'),
@@ -26,4 +29,5 @@ urlpatterns = [
     path('user/ratings/new/', RecipeUserRatingCreate.as_view(), name='recipe-user-rating-create'),
     path('recipe/<int:recipe_id>/ingredients/', RecipeIngredientListView.as_view(), name='recipe-ingredient-list'),
     path('recipe/ingredients/new/', RecipeIngredientCreate.as_view(), name='recipe-ingredient-create'),
+    path('recipe/<int:pk>/favorite/', ToggleFavoriteView.as_view(), name='toggle-favorite'),
 ]
