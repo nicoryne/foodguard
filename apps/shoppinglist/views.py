@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from apps.shoppinglist.forms import IngredientToBuyForm
 from .models import IngredientToBuy, ShoppingList
 
+from apps.notifications.models import Notification
+
 def shopping_list_view(request):
     userr = get_object_or_404(User, email=request.user.email);
     shopping_list = get_object_or_404(ShoppingList, user=userr)
@@ -35,6 +37,12 @@ def finish_list(request):
     
     if request.method != "POST":
         return HttpResponseRedirect(reverse('shoppinglist:list_detail'))
+    
+    Notification.objects.create(
+            user=userr,
+            title="Shopping list cleared!",
+            description=f"You just recently cleared your shopping list."
+        )
     
     shopping_list.clear_ingredients()
     shopping_list.save()
