@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="__delete-recipe" style="padding: 20px;">
+  <div class="container" style="max-width: 600px; margin: auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+    <h2 style="font-size: 24px; color: #333; margin-bottom: 20px;">Delete Recipe</h2>
+    <p style="font-size: 16px; color: #666; margin-bottom: 30px;">Are you sure you want to delete the recipe "{{ recipe.title }}"? This action cannot be undone.</p>
+    <form method="post" style="display: flex; justify-content: center; gap: 15px;">
+      {% csrf_token %}
+      <button type="submit" style="padding: 10px 20px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; font-size: 16px;">Delete</button>
+      <a href="{% url 'admin-recipe-list' %}" style="text-decoration: none; color: #666; padding: 10px 20px; border: 1px solid #ccc; border-radius: 5px;">Cancel</a>
+    </form>
+  </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="__recipe-detail" style="padding: 20px;">
+  <div class="container" style="border-radius: 10px; padding: 20px;">
+    <h1>{{ recipe.title }}</h1>
+    <p>{{ recipe.description }}</p>
+    <h4>Ingredients</h4>
+    <ul>
+      {% for ingredient in recipe.recipe_ingredients.all %}
+      <li>{{ ingredient.ingredient.name }} - {{ ingredient.quantity }}</li>
+      {% empty %}
+      <li>No ingredients listed.</li>
+      {% endfor %}
+    </ul>
+    <h4>Instructions</h4>
+    <p>{{ recipe.instructions }}</p>
+    <div>
+      <form method="post" action="{% url 'toggle-favorite' recipe.pk %}">
+        {% csrf_token %}
+        <button type="submit" style="padding: 10px; background-color: #e74c3c; color: white;">
+          {{ 'Unfavorite' if recipe.is_favorite else 'Favorite' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock content %}
