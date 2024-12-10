@@ -18,7 +18,11 @@
       <form method="post" action="{% url 'toggle-favorite' recipe.pk %}">
         {% csrf_token %}
         <button type="submit" style="padding: 10px; background-color: #e74c3c; color: white;">
-          {{ 'Unfavorite' if recipe.is_favorite else 'Favorite' }}
+          {% if recipe.is_favorite %}
+            Unfavorite
+          {% else %}
+            Favorite
+          {% endif %}
         </button>
       </form>
     </div>

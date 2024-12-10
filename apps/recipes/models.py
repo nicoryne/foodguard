@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from ..inventory.models import Ingredient
+from django.db.models import Q, Count
 
 # Classes within recipes/models.py
 #   1. Recipe
@@ -20,6 +21,43 @@ class Recipe(models.Model):
     rating = models.DecimalField(max_digits=2, decimal_places=1)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+@classmethod
+def find_matching_recipes(cls, user_inventory):
+    # Get ingredient IDs and their quantities in the user's inventory
+    inventory_ingredients = user_inventory.ingredients.values('ingredient_id', 'quantity')
+
+    # Create a dictionary for quick lookup of inventory quantities
+    inventory_dict = {item['ingredient_id']: item['quantity'] for item in inventory_ingredients}
+
+    # Query for matching recipes with a check for ingredient quantity
+    matching_recipes = cls.objects.filter(
+        recipe_ingredients__ingredient_id__in=inventory_dict.keys()
+    ).annotate(
+        match_count=Count(
+            'recipe_ingredients',
+            filter=Q(
+                recipe_ingredients__ingredient_id__in=inventory_dict.keys(),
+                recipe_ingredients__quantity__lte=models.F('recipe_ingredients__ingredient__quantity')
+            )
+        ),
+        total_ingredients=Count('recipe_ingredients')
+    ).annotate(
+        ingredient_coverage=(
+            Count(
+                'recipe_ingredients',
+                filter=Q(
+                    recipe_ingredients__ingredient_id__in=inventory_dict.keys(),
+                    recipe_ingredients__quantity__lte=models.F('recipe_ingredients__ingredient__quantity')
+                )
+            ) * 100.0 / Count('recipe_ingredients')
+        )
+    ).filter(
+        match_count__gt=0
+    ).order_by('-ingredient_coverage', '-match_count')
+
+    return matching_recipes
+
 
 # Recipe Ingredients
 class RecipeIngredient(models.Model):

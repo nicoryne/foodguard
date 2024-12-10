@@ -56,14 +56,14 @@ class ToggleFavoriteView(View):
 # Create New Recipe
 class RecipeCreateView(CreateView):
     model = Recipe
-    fields = ['title', 'description', 'difficulty', 'duration', 'rating', 'instructions']
+    fields = ['title', 'description', 'difficulty', 'duration', 'rating', 'instructions', 'ingredient']
     template_name = 'recipe_create_form.html'
     success_url = '/recipes/'
 
 # Recipe Update View
 class RecipeUpdateView(UpdateView):
     model = Recipe
-    fields = ['title', 'description', 'difficulty', 'duration', 'rating', 'instructions']
+    fields = ['title', 'description', 'difficulty', 'duration', 'rating', 'instructions', 'ingredient']
     template_name = 'recipe_update_form.html'
     success_url = '/recipes/'
 
