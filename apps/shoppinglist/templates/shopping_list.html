@@ -209,18 +209,39 @@
 
 <script>
   document.getElementById('btn-tts').addEventListener('click', () => {
-    const items = [...document.querySelectorAll('#shopping-list tbody tr td:nth-child(2)')]
-      .map(td => td.textContent.trim())
-      .join(', ');
+    const rows = [...document.querySelectorAll('#shopping-list tbody tr')];
+    
+    const inCartItems = [];
+    const notInCartItems = [];
+  
+    rows.forEach(row => {
+      const quantity = row.querySelector('td:nth-child(3)').textContent.trim();
+      const itemName = row.querySelector('td:nth-child(2)').textContent.trim();
+      if (row.classList.contains('in-cart')) {
+        inCartItems.push(`${quantity} ${itemName}`);
+      } else {
+        notInCartItems.push(`${quantity} ${itemName}`);
+      }
+    });
 
-    if (items) {
-      const utterance = new SpeechSynthesisUtterance(`Your shopping list includes: ${items}`);
-      utterance.lang = 'en-US'; 
-      utterance.rate = 1; 
-
+    if (notInCartItems.length == 0) {
+      const utterance = new SpeechSynthesisUtterance("Your shopping list is empty.");
       window.speechSynthesis.speak(utterance);
-    } else {
-      alert('Your shopping list is empty!');
+    }
+    
+    if (inCartItems.length == 0) {
+      const utterance = new SpeechSynthesisUtterance("Your cart is empty.");
+      window.speechSynthesis.speak(utterance);
+    }
+    
+    if (notInCartItems.length > 0) {
+      const utterance = new SpeechSynthesisUtterance("Items in shopping list are: " + notInCartItems.join(', ') + ".");
+      window.speechSynthesis.speak(utterance);
+    }
+    
+    if (inCartItems.length > 0) {
+      const utterance = new SpeechSynthesisUtterance("Items in cart are: " + inCartItems.join(', ') + ".");
+      window.speechSynthesis.speak(utterance);
     }
   });
 </script>
